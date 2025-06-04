@@ -33,7 +33,7 @@ public class Main{
             combine(len+1, i+1);
         }
     }
-    static boolean check(String[]pw){
+    static boolean check(String[]pwd){
         int c = 0; //자음
         int v = 0; //모음
         
