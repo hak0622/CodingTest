@@ -5,12 +5,16 @@ class Solution {
         List<Integer>list = new ArrayList<>();
         
         for(int i=0; i<intStrs.length; i++){
-            String str = intStrs[i].substring(s,s+l);
-            int x = Integer.parseInt(str);
-            if(x > k){
-                list.add(x);
+            int num = Integer.parseInt(intStrs[i].substring(s,s+l));
+            if(num > k){
+                list.add(num);
             }
         }
-        return list.stream().mapToInt(i->i).toArray();
+        
+        int[]answer = new int[list.size()];
+        for(int i=0; i<list.size(); i++){
+            answer[i] = list.get(i);
+        }
+        return answer;
     }
 }
