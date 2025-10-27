@@ -1,21 +1,24 @@
-import java.util.*;
+import java.util.Arrays;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int num = sc.nextInt();
-        int[]arr= new int[num];
-        int sum=0;
+        int N = sc.nextInt();
+        int[]P = new int[N];
+        int sum = 0;
 
-        for(int i=0; i<arr.length; i++){
-            arr[i]=sc.nextInt();
+        for(int i=0; i<N; i++){
+            P[i] = sc.nextInt();
         }
-        Arrays.sort(arr);
-       for(int i=0; i<arr.length; i++){
-           for(int j=0; j<=i; j++){
-               sum+=arr[j];
-           }
-       }
+
+        Arrays.sort(P);
+
+        for(int i=0; i<N; i++){
+            for(int j=0; j<i+1; j++){
+                sum+=P[j];
+            }
+        }
         System.out.println(sum);
     }
 }
