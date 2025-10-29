@@ -1,46 +1,47 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.StringTokenizer;
 
 public class Main {
-    static int n;
-    static int m;
-    static boolean[]visited;
-    static int count = 0;
-    static List<List<Integer>> graph = new ArrayList<>();
+    static int N,M; //엣지와 간선
+    static int[][]arr; //숫자 담는 배열
+    static boolean[]visit; //방문 체크 배열
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        n = sc.nextInt();
-        m = sc.nextInt();
+    static int result = 0; 
+    static int x,y; 
 
-        visited = new boolean[n+1];
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        N = Integer.parseInt(st.nextToken());
+        M = Integer.parseInt(st.nextToken());
 
-        for (int i = 0; i < n; i++) {
-            graph.add(new ArrayList<>());
+        arr = new int[N+1][N+1];
+        visit = new boolean[N+1];
+
+        for(int i=1; i<M+1; i++){
+            st = new StringTokenizer(br.readLine());
+            x = Integer.parseInt(st.nextToken());
+            y = Integer.parseInt(st.nextToken());
+            arr[x][y] = arr[y][x] = 1;
         }
 
-        for(int i=0; i<m; i++){
-            int a = sc.nextInt()-1;
-            int b = sc.nextInt()-1;
-
-            graph.get(a).add(b);
-            graph.get(b).add(a);
-        }
-
-        for(int i = 0; i < n; i++){
-            if(!visited[i]){
+        for(int i=1; i<N+1; i++){
+            if(!visit[i]){
                 dfs(i);
-                count++;
+                result++;
             }
         }
-        System.out.println(count);
+        System.out.println(result);
     }
-    static void dfs(int v){
-        visited[v] = true;
-        for(int next : graph.get(v)){
-            if(!visited[next]){
-                dfs(next);
+
+    public static void dfs(int node){
+        visit[node] = true;
+        for(int i=1; i<N+1; i++){
+            if(!visit[i] && arr[node][i] == 1){
+                dfs(i);
             }
         }
     }
