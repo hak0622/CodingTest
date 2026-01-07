@@ -19,7 +19,7 @@ class Solution {
         }
         
         for(int i=0; i<N-1; i++){
-            for(int j=0; j<N-1-i; j++){
+            for(int j=0; j<N-i-1; j++){
                 if(fail[j] < fail[j+1]){
                     double tempFail = fail[j];
                     fail[j] = fail[j+1];
@@ -31,6 +31,7 @@ class Solution {
                 }
             }
         }
+        
         return stage;
     }
 }
