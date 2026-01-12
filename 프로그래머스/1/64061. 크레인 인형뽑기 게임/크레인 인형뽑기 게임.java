@@ -6,9 +6,8 @@ class Solution {
         int answer = 0;
         
         for(int move : moves){
-            int col = move -1;
-            
-            for(int row = 0; row<board.length; row++){
+            int col = move - 1;
+            for(int row=0; row<board.length; row++){
                 if(board[row][col] != 0){
                     int doll = board[row][col];
                     board[row][col] = 0;
@@ -23,6 +22,7 @@ class Solution {
                 }
             }
         }
+        
         return answer;
     }
 }
