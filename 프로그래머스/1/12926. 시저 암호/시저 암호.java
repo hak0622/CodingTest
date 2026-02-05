@@ -1,24 +1,24 @@
 class Solution {
     public String solution(String s, int n) {
-        char[]ch = s.toCharArray();
+        StringBuilder sb = new StringBuilder();
         
-        for(int i=0; i<ch.length; i++){
-            if(ch[i] == ' '){
+        for(int i=0; i<s.length(); i++){
+            char c = s.charAt(i);
+            
+            if(c == ' '){
+                sb.append(' ');
                 continue;
             }
             
-            if(ch[i] >='A' && ch[i]<='Z'){
-                ch[i] = (char)(ch[i] + n);
-                if(ch[i] > 'Z'){
-                   ch[i] = (char)(ch[i] - 26);
-                }
-            }else if(ch[i] >='a' && ch[i]<='z'){
-                ch[i] = (char)(ch[i] + n);
-                if(ch[i] > 'z'){
-                   ch[i] = (char)(ch[i] - 26);
-                }
+            if(c >= 'a' && c <= 'z'){
+                char shift1 = (char)((c - 'a' + n) % 26 + 'a');
+                sb.append(shift1);
+            }else if(c >= 'A' && c <= 'Z'){
+                char shift2 = (char)((c - 'A' + n) % 26 + 'A');
+                sb.append(shift2);
             }
         }
-        return new String(ch);
+        
+        return sb.toString();
     }
 }
