@@ -1,15 +1,17 @@
 class Solution {
     public int[] solution(int n, int m) {
-        int[] answer = new int[2];
-        int A = n;
-        int B = m;
-        while(B != 0){
-            int temp = A % B;
-            A = B;
-            B = temp;
+        int a = n;
+        int b = m;
+        
+        while(b != 0){
+            int temp = a % b;
+            a = b;
+            b = temp;
         }
-        answer[0] = A;
-        answer[1] = (n * m) / A;
-        return answer;
+        
+        int gcd = a;
+        int lcm = (n * m) / gcd;
+        
+        return new int[]{gcd,lcm};
     }
 }
