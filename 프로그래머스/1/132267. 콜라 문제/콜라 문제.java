@@ -1,10 +1,13 @@
 class Solution {
     public int solution(int a, int b, int n) {
         int answer = 0;
+        
         while(n >= a){
-            int coke = (n / a) * b;
-            answer = answer + coke;
-            n = n % a +coke;
+            int exchange = n / a;
+            int can = exchange * b;
+            
+            answer = answer + can;
+            n = (n % a) + can;
         }
         return answer;
     }
