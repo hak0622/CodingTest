@@ -3,11 +3,11 @@ class Solution {
         int answer = 0;
         
         while(n >= a){
-            int exchange = n / a;
-            int can = exchange * b;
+            int changed = n / a;
+            int can = changed * b;
             
             answer = answer + can;
-            n = (n % a) + can;
+            n = can + (n % a);
         }
         return answer;
     }
