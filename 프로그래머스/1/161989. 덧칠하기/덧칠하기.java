@@ -1,11 +1,12 @@
 class Solution {
     public int solution(int n, int m, int[] section) {
         int answer = 0;
-        int painting = 0;
+        int paint = 0;
+        
         for(int i=0; i<section.length; i++){
-            if(section[i] > painting){
+            if(section[i] > paint){
                 answer++;
-                painting = section[i] + m - 1;
+                paint = section[i] + m - 1;
             }
         }
         return answer;
