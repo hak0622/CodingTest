@@ -7,17 +7,18 @@ class Solution {
             
             for(int j=1; j*j<=i; j++){
                 if(i % j == 0){
-                    count++;
-                    if(j != i / j){
-                        count++;
+                    if(j * j == i){
+                        count = count + 1;
+                    }else{
+                        count = count + 2;
                     }
                 }
             }
             
             if(count > limit){
-                answer += power;
+                answer = answer + power;
             }else{
-                answer += count;
+                answer = answer + count;
             }
         }
         return answer;
