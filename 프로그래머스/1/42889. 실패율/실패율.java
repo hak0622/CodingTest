@@ -1,37 +1,43 @@
 class Solution {
     public int[] solution(int N, int[] stages) {
-        int[]count = new int[N+2];
+        int[]arr = new int[N+2];
+        double[]fail = new double[N+1];
+        int total = stages.length;
+        
         for(int i=0; i<stages.length; i++){
-            count[stages[i]]++;
+            arr[stages[i]]++;
+        }
+
+        for(int i=1; i<=N; i++){
+            if(total == 0){
+                fail[i] = 0;
+            }else{
+                fail[i] = (double) arr[i] / total;
+            }
+            
+            total = total - arr[i];
         }
         
-        double[]fail = new double[N];
-        int users = stages.length;
+        int[]answer = new int[N];
         
         for(int i=0; i<N; i++){
-            fail[i] = (double)count[i+1] / users;
-            users = users - count[i+1];
-        }
-        
-        int[]stage = new int[N];
-        for(int i=0; i<N; i++){
-            stage[i] = i+1;
+            answer[i] = i+1;
         }
         
         for(int i=0; i<N-1; i++){
-            for(int j=0; j<N-i-1; j++){
-                if(fail[j] < fail[j+1]){
-                    double tempFail = fail[j];
-                    fail[j] = fail[j+1];
-                    fail[j+1] = tempFail;
-                    
-                    int tempStage = stage[j];
-                    stage[j] = stage[j+1];
-                    stage[j+1] = tempStage;
+            for(int j=i+1; j<N; j++){
+                if(fail[answer[i]] < fail[answer[j]]){
+                    int temp = answer[i];
+                    answer[i] = answer[j];
+                    answer[j] = temp;
+                }
+                else if(fail[answer[i]] == fail[answer[j]] && answer[i] > answer[j]){
+                    int temp = answer[i];
+                    answer[i] = answer[j];
+                    answer[j] = temp;
                 }
             }
         }
-        
-        return stage;
+        return answer;
     }
 }
