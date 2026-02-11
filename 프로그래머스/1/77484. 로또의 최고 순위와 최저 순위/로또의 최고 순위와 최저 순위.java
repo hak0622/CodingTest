@@ -1,40 +1,32 @@
 class Solution {
     public int[] solution(int[] lottos, int[] win_nums) {
-        int zero = 0;
-        int match = 0;
-        
-        for(int i=0; i<6; i++){
-            if(lottos[i] == 0){
-                zero++;
-            }else{
-                for(int j=0; j<6; j++){
-                    if(lottos[i] == win_nums[j]){
-                        match++;
-                        break;
+        int zeroCount = 0;
+        int matchCount = 0;
+
+        for (int myNum : lottos) {
+            if (myNum == 0) {
+                zeroCount++;
+            } else {
+                for (int winNum : win_nums) {
+                    if (myNum == winNum) {
+                        matchCount++;
+                        break; 
                     }
                 }
             }
         }
-        
-        int max = match + zero;
-        int min = match;
-        
-        int maxRank;
-        if(max == 6) maxRank = 1;
-        else if(max == 5) maxRank = 2;
-        else if(max == 4) maxRank = 3;
-        else if(max == 3) maxRank = 4;
-        else if(max == 2) maxRank = 5;
-        else maxRank = 6;
-        
-        int minRank;
-        if(min == 6) minRank = 1;
-        else if(min == 5) minRank = 2;
-        else if(min == 4) minRank = 3;
-        else if(min == 3) minRank = 4;
-        else if(min == 2) minRank = 5;
-        else minRank = 6;
-        
-        return new int[]{maxRank,minRank};
+        int maxHits = matchCount + zeroCount;
+        int minHits = matchCount;
+
+        return new int[] {getRank(maxHits), getRank(minHits)};
+    }
+
+    public int getRank(int hits) {
+        if (hits == 6) return 1;
+        if (hits == 5) return 2;
+        if (hits == 4) return 3;
+        if (hits == 3) return 4;
+        if (hits == 2) return 5;
+        return 6; 
     }
 }
