@@ -2,36 +2,33 @@ import java.util.*;
 
 class Solution {
     public int[] solution(String[] keymap, String[] targets) {
-        int[]answer=  new int[targets.length];
         HashMap<Character,Integer>map = new HashMap<>();
         
         for(String key : keymap){
             for(int i=0; i<key.length(); i++){
                 char c = key.charAt(i);
-                int press = i + 1;
+                int count = i+1;
                 
-                if(!map.containsKey(c)){
-                    map.put(c,press);
-                }else{
-                    map.put(c, Math.min(map.get(c),press));
+                if(!map.containsKey(c) || count < map.get(c)){
+                    map.put(c,count);
                 }
             }
         }
         
+        int[]answer = new int[targets.length];
         for(int i=0; i<targets.length; i++){
-            String word = targets[i];
-            int sum = 0;
+            int total = 0;
+            boolean canMake = true;
             
-            for(int j=0; j<word.length(); j++){
-                char c = word.charAt(j);
-                
-                if(!map.containsKey(c)){
-                    sum = -1;
+            for(char c : targets[i].toCharArray()){
+                if(map.containsKey(c)){
+                    total = total + map.get(c);
+                }else{
+                    canMake = false;
                     break;
                 }
-                sum += map.get(c);
             }
-            answer[i] = sum;
+            answer[i] = canMake ? total : -1;
         }
         return answer;
     }
