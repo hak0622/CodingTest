@@ -1,53 +1,36 @@
 class Solution {
     public int solution(String dartResult) {
         int[]scores = new int[3];
-        int idx = 0;
-        int i = 0;
+        int idx = -1;
+        String tempNum = "";
         
-        while(i < dartResult.length()){
-            int score;
-            if(i+1<dartResult.length() && dartResult.charAt(i)=='1' && dartResult.charAt(i+1)=='0'){
-                score = 10;
-                i = i + 2;
-            }else{
-                score = dartResult.charAt(i) - '0';
-                i++;
-            }
+        for(int i=0; i<dartResult.length(); i++){
+            char c = dartResult.charAt(i);
             
-            char bonus = dartResult.charAt(i);
-            i++;
-            
-            if(bonus == 's'){
-                score = score;
-            }else if(bonus == 'D'){
-                score = score * score;
-            }else if(bonus == 'T'){
-                score = score * score * score;
-            }
-            
-            if(i < dartResult.length()){
-                char option = dartResult.charAt(i);
+            if(Character.isDigit(c)){
+                tempNum = tempNum + c;
+            }else if(c == 'S' || c=='D' || c=='T'){
+                idx++;
+                int score = Integer.parseInt(tempNum);
                 
-                if(option == '*'){
-                    score = score * 2;
-                    if(idx > 0){
-                        scores[idx - 1] = scores[idx -1] * 2;
-                    }
-                    i++;
-                }else if(option == '#'){
-                    score = score * -1;
-                    i++;
+                if(c == 'S'){
+                    scores[idx] = score;
+                }else if(c == 'D'){
+                    scores[idx] = score * score;
+                }else if(c == 'T'){
+                    scores[idx] = score * score * score;
                 }
+                tempNum = "";
+            }else if(c == '*'){
+                scores[idx] = scores[idx] * 2;
+                if(idx > 0){
+                    scores[idx - 1] = scores[idx - 1] * 2;
+                }
+            }else if(c == '#'){
+                scores[idx] = scores[idx] * -1;
             }
-            
-            scores[idx] = score;
-            idx++;
-        }
-        int answer = 0;
-        for(int s : scores){
-            answer = answer + s;
         }
         
-        return answer;
+        return scores[0] + scores[1] + scores[2];
     }
 }
