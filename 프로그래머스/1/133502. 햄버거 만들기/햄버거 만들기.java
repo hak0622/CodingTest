@@ -1,22 +1,23 @@
+import java.util.*;
+
 class Solution {
     public int solution(int[] ingredient) {
-        int n = ingredient.length;
-        int[]stack = new int[n];
-        int top = 0;
-        int count = 0;
-        
-        for(int x : ingredient){
-            stack[top++] = x;
+        int answer = 0;
+        List<Integer>list = new ArrayList<>();
+        for(int item : ingredient){
+            list.add(item);
             
-            if(top >= 4 && 
-               stack[top - 4] == 1 && 
-               stack[top - 3] == 2 &&
-               stack[top - 2] == 3 &&
-               stack[top - 1] == 1){
-                top = top - 4;
-                count++;
+            if(list.size() >= 4){
+                int size = list.size();
+                if(list.get(size-4) == 1 && list.get(size-3) == 2 && list.get(size-2) == 3 && list.get(size-1) == 1){
+                    answer++;
+                    
+                    for(int i=0; i<4; i++){
+                        list.remove(list.size() -1);
+                    }
+                }
             }
         }
-        return count;
+        return answer;
     }
 }
