@@ -2,24 +2,29 @@ class Solution {
     public String solution(String X, String Y) {
         int[]countX = new int[10];
         int[]countY = new int[10];
-        
-        for(int i=0; i<X.length(); i++){
-            countX[X.charAt(i) - '0']++;
-        }
-        for(int i=0; i<Y.length(); i++){
-            countY[Y.charAt(i) - '0']++;
-        }
-        
         StringBuilder sb = new StringBuilder();
-        for(int d=9; d>=0; d--){
-            int common = Math.min(countX[d],countY[d]);
-            for(int i=0; i<common; i++){
-                sb.append(d);
+        
+        for(char c : X.toCharArray()){
+            countX[c - '0']++;
+        }
+        for(char c : Y.toCharArray()){
+            countY[c - '0']++;
+        }
+        for(int i=9; i>=0; i--){
+            int common = Math.min(countX[i],countY[i]);
+            
+            for(int j=0; j<common; j++){
+                sb.append(i);
             }
         }
-        if(sb.length() == 0) return "-1";
-        if(sb.charAt(0) == '0') return "0";
         
-        return sb.toString();
+        String answer = sb.toString();
+        if(answer.isEmpty()){
+            return "-1";
+        }else if(answer.charAt(0) == '0'){
+            return "0";
+        }
+        
+        return answer;
     }
 }
