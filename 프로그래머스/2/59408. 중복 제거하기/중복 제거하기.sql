@@ -1,3 +1,3 @@
-SELECT count(distinct NAME) as count
+select count(distinct(NAME))
 from ANIMAL_INS
-where name is not null
+where NAME is not null
