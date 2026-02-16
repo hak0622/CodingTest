@@ -1,4 +1,4 @@
-SELECT *
-FROM FOOD_PRODUCT
-WHERE PRICE = (SELECT MAX(PRICE)
-               FROM FOOD_PRODUCT);
+select *
+from FOOD_PRODUCT
+order by PRICE desc
+limit 1;
