@@ -1,0 +1,3 @@
+select ANIMAL_ID,NAME,IF(SEX_UPON_INTAKE LIKE '%Neutered%' OR SEX_UPON_INTAKE LIKE '%Spayed%','O','X')
+from ANIMAL_INS
+order by ANIMAL_ID
