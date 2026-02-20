@@ -6,7 +6,7 @@ class Solution {
         return answer;
     }
     
-    void dfs(int[]numbers,int target, int index, int sum){
+    void dfs(int[]numbers,int target,int index, int sum){
         if(index == numbers.length){
             if(sum == target){
                 answer++;
@@ -14,7 +14,7 @@ class Solution {
             return;
         }
         
-        dfs(numbers,target,index + 1,sum + numbers[index]);
-        dfs(numbers,target,index + 1,sum - numbers[index]);
+        dfs(numbers,target,index+1,sum + numbers[index]);
+        dfs(numbers,target,index+1,sum - numbers[index]);
     }
 }
