@@ -1,0 +1,4 @@
+select a.FLAVOR
+from FIRST_HALF a, ICECREAM_INFO b
+where a.FLAVOR = b.FLAVOR AND TOTAL_ORDER >= 3000 AND INGREDIENT_TYPE = 'fruit_based'
+order by TOTAL_ORDER DESC
