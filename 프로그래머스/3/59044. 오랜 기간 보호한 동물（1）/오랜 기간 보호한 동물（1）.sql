@@ -3,4 +3,4 @@ from ANIMAL_INS
 where ANIMAL_ID NOT IN (select ANIMAL_ID
                         from ANIMAL_OUTS)
 order by DATETIME
-LIMIT 3;
+limit 3
