@@ -1,8 +1,5 @@
-SELECT a.ANIMAL_ID, a.ANIMAL_TYPE, a.NAME
-FROM ANIMAL_INS a
-JOIN ANIMAL_OUTS b ON a.ANIMAL_ID = b.ANIMAL_ID
-WHERE 
-    (a.SEX_UPON_INTAKE NOT LIKE 'Neutered%' AND a.SEX_UPON_INTAKE NOT LIKE 'Spayed%')
-    AND 
-    (b.SEX_UPON_OUTCOME LIKE 'Neutered%' OR b.SEX_UPON_OUTCOME LIKE 'Spayed%')
-ORDER BY a.ANIMAL_ID;
+select ANIMAL_ID,ANIMAL_TYPE,NAME
+from ANIMAL_OUTS
+where SEX_UPON_OUTCOME IN ('Spayed Female','Neutered Male')AND ANIMAL_ID IN(select ANIMAL_ID
+                                                                            from ANIMAL_INS
+                                                                            where SEX_UPON_INTAKE LIKE '%Intact%')
