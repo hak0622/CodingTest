@@ -5,27 +5,28 @@ class Solution {
         int[]supo1 = {1,2,3,4,5};
         int[]supo2 = {2, 1, 2, 3, 2, 4, 2, 5};
         int[]supo3 = {3, 3, 1, 1, 2, 2, 4, 4, 5, 5};
-        int count1 = 0;
-        int count2 = 0;
-        int count3 = 0;
+        
+        int cnt1 = 0;
+        int cnt2 = 0;
+        int cnt3 = 0;
         
         for(int i=0; i<answers.length; i++){
-            if(answers[i] == supo1[i % supo1.length]){
-                count1++;
+            if(supo1[i % supo1.length] == answers[i]){
+                cnt1++;
             }
-            if(answers[i] == supo2[i % supo2.length]){
-                count2++;
+            if(supo2[i % supo2.length] == answers[i]){
+                cnt2++;
             }
-            if(answers[i] == supo3[i % supo3.length]){
-                count3++;
+            if(supo3[i % supo3.length] == answers[i]){
+                cnt3++;
             }
         }
-        
-        int max = Math.max(count1,Math.max(count2,count3));
+        int max = Math.max(cnt1, Math.max(cnt2,cnt3));
         List<Integer>list = new ArrayList<>();
-        if(max == count1) list.add(1);
-        if(max == count2) list.add(2);
-        if(max == count3) list.add(3);
+        
+        if(max == cnt1) list.add(1);
+        if(max == cnt2) list.add(2);
+        if(max == cnt3) list.add(3);
         
         return list.stream().mapToInt(Integer::intValue).toArray();
     }
