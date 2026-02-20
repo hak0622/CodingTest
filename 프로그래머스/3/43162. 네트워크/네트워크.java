@@ -13,12 +13,12 @@ class Solution {
         return count;
     }
     
-    void dfs(int node,int[][]computers,boolean[]visited,int n){
+    void dfs(int node, int[][]computers,boolean[]visited,int n){
         visited[node] = true;
         
-        for(int next = 0; next < n; next++){
+        for(int next=0; next<n; next++){
             if(computers[node][next] == 1 && !visited[next]){
-                dfs(next, computers, visited, n);
+                dfs(next,computers,visited,n);
             }
         }
     }
