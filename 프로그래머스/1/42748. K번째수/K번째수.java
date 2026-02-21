@@ -5,17 +5,19 @@ class Solution {
         int[]answer = new int[commands.length];
         
         for(int i=0; i<commands.length; i++){
-            int[]arr = new int[commands[i][1] - commands[i][0] + 1];
-            int index = 0;
+            List<Integer>list = new ArrayList<>();
             
-            for(int j=commands[i][0]-1; j<commands[i][1]; j++){
-                arr[index] = array[j];
-                index++;
+            for(int j=commands[i][0]; j<=commands[i][1]; j++){
+                list.add(array[j-1]);
             }
-            Arrays.sort(arr);
-            answer[i] = arr[commands[i][2] - 1];
+            Collections.sort(list);
+            int n = list.get(commands[i][2]-1);
+            answer[i] = n;
+            
         }
         
         return answer;
     }
 }
+
+// 2 5 3
