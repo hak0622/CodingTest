@@ -11,11 +11,6 @@ public class Solution {
             }
         }
         
-        int[]answer = new int[st.size()];
-        
-        for(int i=st.size()-1; i >= 0; i--){
-            answer[i] = st.pop();
-        }
-        return answer;
+        return st.stream().mapToInt(Integer::intValue).toArray();
     }
 }
