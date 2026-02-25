@@ -11,18 +11,19 @@ class Solution {
         int cnt3 = 0;
         
         for(int i=0; i<answers.length; i++){
-            if(supo1[i % supo1.length] == answers[i]){
+            if(answers[i] == supo1[i % supo1.length]){
                 cnt1++;
             }
-            if(supo2[i % supo2.length] == answers[i]){
+            if(answers[i] == supo2[i % supo2.length]){
                 cnt2++;
             }
-            if(supo3[i % supo3.length] == answers[i]){
+            if(answers[i] == supo3[i % supo3.length]){
                 cnt3++;
             }
         }
-        int max = Math.max(cnt1, Math.max(cnt2,cnt3));
+        
         List<Integer>list = new ArrayList<>();
+        int max = Math.max(cnt1, Math.max(cnt2,cnt3));
         
         if(max == cnt1) list.add(1);
         if(max == cnt2) list.add(2);
