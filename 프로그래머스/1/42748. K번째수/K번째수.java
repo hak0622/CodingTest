@@ -7,17 +7,19 @@ class Solution {
         for(int i=0; i<commands.length; i++){
             List<Integer>list = new ArrayList<>();
             
-            for(int j=commands[i][0]; j<=commands[i][1]; j++){
-                list.add(array[j-1]);
-            }
-            Collections.sort(list);
-            int n = list.get(commands[i][2]-1);
-            answer[i] = n;
+            int s = commands[i][0];
+            int e = commands[i][1];
+            int k = commands[i][2];
             
+            for(int j=s-1; j<e; j++){
+                list.add(array[j]);
+            }
+            
+            Collections.sort(list);
+            
+            answer[i] = list.get(k-1);
         }
         
         return answer;
     }
 }
-
-// 2 5 3
