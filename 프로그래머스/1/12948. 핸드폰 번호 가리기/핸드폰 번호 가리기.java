@@ -1,7 +1,14 @@
 class Solution {
     public String solution(String phone_number) {
-        String last4 = phone_number.substring(phone_number.length()-4);
-        String star = "*".repeat(phone_number.length() - 4);
-        return star + last4;
+        StringBuilder sb = new StringBuilder();
+        String answer = phone_number.substring(phone_number.length() - 4);
+        
+        for(int i=0; i<phone_number.length()-4; i++){
+            sb.append("*");
+        }
+        
+        sb.append(answer);
+        
+        return sb.toString();
     }
 }
