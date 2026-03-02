@@ -2,7 +2,7 @@ import java.util.*;
 
 class Solution {
     public int[] solution(int[] arr, int divisor) {
-        List<Integer> list = new ArrayList<>();
+        List<Integer>list = new ArrayList<>();
         
         for(int i=0; i<arr.length; i++){
             if(arr[i] % divisor == 0){
@@ -10,10 +10,12 @@ class Solution {
             }
         }
         
-        if(list.size() == 0){
+        Collections.sort(list);
+        
+        if(list.isEmpty()){
             return new int[]{-1};
         }
         
-        return list.stream().mapToInt(x->x).sorted().toArray();
+        return list.stream().mapToInt(Integer::intValue).toArray();
     }
 }
