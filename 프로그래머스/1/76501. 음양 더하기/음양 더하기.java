@@ -3,9 +3,9 @@ class Solution {
         int answer = 0;
         for(int i=0; i<signs.length; i++){
             if(signs[i]){
-                answer = answer + absolutes[i];
+                answer += absolutes[i];
             }else{
-                answer = answer - absolutes[i];
+                answer -= absolutes[i];
             }
         }
         return answer;
