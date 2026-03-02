@@ -1,21 +1,14 @@
-import java.util.*;
-
 class Solution {
     public String solution(String s) {
-        String answer = "";
-        String[]str = s.split(" ");
+        String[]s1 = s.split(" ");
+        int max = Integer.parseInt(s1[0]);
+        int min = Integer.parseInt(s1[0]);
         
-        int[]arr = new int[str.length];
-        
-        for(int i=0; i<str.length; i++){
-            arr[i] = Integer.parseInt(str[i]);
+        for(int i=1; i<s1.length; i++){
+            max = Math.max(max,Integer.parseInt(s1[i]));
+            min = Math.min(min,Integer.parseInt(s1[i]));
         }
-        Arrays.sort(arr);
         
-        StringBuilder sb = new StringBuilder();
-        sb.append(arr[0] + "");
-        sb.append(" ");
-        sb.append(arr[arr.length-1] + "");
-        return sb.toString();
+        return min + " " + max;
     }
 }
