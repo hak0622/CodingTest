@@ -1,18 +1,17 @@
 import java.util.*;
 
-class Solution {
+class Solution{
     public int solution(int []A, int []B){
         int answer = 0;
+        int indexB = B.length - 1;
+        
         Arrays.sort(A);
         Arrays.sort(B);
-        int index = 1;
         
         for(int i=0; i<A.length; i++){
-            answer = answer + A[i] * B[B.length - index++];
+            answer = answer + A[i] * B[indexB - i];
         }
+        
         return answer;
     }
 }
-
-
-    
