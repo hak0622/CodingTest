@@ -1,7 +1,10 @@
 class Solution {
     public int solution(int n) {
-        String number = Integer.toString(n,3);
-        String reversed = new StringBuilder(number).reverse().toString();
-        return Integer.parseInt(reversed,3);
+        int answer = 0;
+        String three = Integer.toString(n,3);
+        StringBuilder sb = new StringBuilder(three);
+        sb.reverse();
+        
+        return Integer.parseInt(sb.toString(),3);
     }
 }
