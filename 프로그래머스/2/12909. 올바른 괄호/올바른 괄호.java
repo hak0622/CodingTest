@@ -8,18 +8,19 @@ class Solution {
         for(int i=0; i<s.length(); i++){
             char c = s.charAt(i);
             
+            if(st.isEmpty() && c == ')'){
+                return false;
+            }
+            
             if(c == '('){
                 st.push(c);
-            }else {
-                if(st.isEmpty()){
-                    return false;
-                }
+            }else{
                 st.pop();
             }
         }
         
         if(!st.isEmpty()){
-            answer = false;
+            return false;
         }
         
         return answer;
