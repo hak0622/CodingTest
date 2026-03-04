@@ -4,12 +4,16 @@ class Solution {
         
         for(int i=0; i<s.length(); i++){
             char c = s.charAt(i);
-            answer[i] = -1;
-            for(int j=0; j<i; j++){
-                if(c==s.charAt(j)){
-                    answer[i]=i-j;
+            int result = -1;
+            
+            for(int j=i-1; j>=0; j--){
+                if(c == s.charAt(j)){
+                    result = i - j;
+                    break;
                 }
             }
+            
+            answer[i] = result;
         }
         return answer;
     }
