@@ -1,9 +1,11 @@
 class Solution {
     public int solution(String s) {
-        String[]numbers = {"zero","one","two","three","four","five","six","seven","eight","nine"};
-        for(int i=0; i<numbers.length; i++){
-            if(s.contains(numbers[i])){
-                s = s.replace(numbers[i],String.valueOf(i));
+        int answer = 0;
+        String[]words = {"zero","one","two","three","four","five","six","seven","eight","nine"};
+        
+        for(int i=0; i<words.length; i++){
+            if(s.contains(words[i])){
+                s = s.replace(words[i], "" + i);
             }
         }
         return Integer.parseInt(s);
