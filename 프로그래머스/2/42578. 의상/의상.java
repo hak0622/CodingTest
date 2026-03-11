@@ -2,17 +2,17 @@ import java.util.*;
 
 class Solution {
     public int solution(String[][] clothes) {
-        HashMap<String,Integer>map = new HashMap<>();
-        int count = 1;
+        int answer = 1;
+        Map<String,Integer>map = new HashMap<>();
         
-        for(String[]c : clothes){
-            String type = c[1];
-            map.put(type, map.getOrDefault(type,0) + 1);
+        for(int i=0; i<clothes.length; i++){
+            map.put(clothes[i][1],map.getOrDefault(clothes[i][1],0) + 1);
         }
         
-        for(int cnt : map.values()){
-            count = count * (cnt + 1);
+        for(int count : map.values()){
+            answer = answer * (count + 1);
         }
-        return count -1;
+        
+        return answer-1;
     }
 }
