@@ -1,17 +1,16 @@
 class Solution {
     public String solution(int a, int b) {
-        String[]days = {"SUN","MON","TUE","WED","THU","FRI","SAT"};
-        int[] monthDays = {31, 29, 31, 30, 31, 30,31, 31, 30, 31, 30, 31};
-        
+        int[]month = {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+        String[] day = {"FRI", "SAT", "SUN", "MON", "TUE", "WED", "THU"};
         int sum = 0;
         
         for(int i=0; i<a-1; i++){
-            sum = sum + monthDays[i];
+            sum = sum + month[i];
         }
-        sum = sum + (b-1);
         
-        int start = 5;
-        int dayIndex = (start + sum) % 7;
-        return days[dayIndex];
+        sum = sum + b - 1;
+        sum = sum % 7;
+        
+        return day[sum];
     }
 }
