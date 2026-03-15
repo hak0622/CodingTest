@@ -1,34 +1,30 @@
+import java.util.*;
+
 class Solution {
-    static int [] dx = {0,1,0,-1};
-    static int [] dy = {1,0,-1,0};
-    
     public int solution(String dirs) {
-        boolean[][][]visited = new boolean[11][11][4]; // 0:상, 1:우, 2:하, 3:좌
-        int x=5, y=5, d=0;
-        int answer = 0;
+        Set<String>visit = new HashSet<>();
         
-        for(char c : dirs.toCharArray()){
-            if(c == 'U'){
-                d = 0;
-            }if(c == 'R'){
-                d = 1;
-            }if(c == 'D'){
-                d = 2;
-            }if(c == 'L'){
-                d = 3;
-            }
-             int nx = x + dx[d];
-             int ny = y + dy[d];
-             if(nx>=0 && nx<11 && ny>=0 && ny<11){
-             if(!visited[nx][ny][d]){
-                visited[nx][ny][d] = true;
-                visited[x][y][(d + 2) % 4] = true;
-                answer ++;
-             }
-             x = nx;
-             y = ny;
-            }
+        int x = 0;
+        int y = 0;
+        
+        for(int i=0; i<dirs.length(); i++){
+            char c = dirs.charAt(i);
+            
+            int prevX = x;
+            int prevY = y;
+            
+            if(c == 'U' && y < 5) y++;
+            else if(c == 'D' && y > -5) y--;
+            else if(c == 'R' && x < 5) x++;
+            else if(c == 'L' && x > -5) x--;
+            else continue;
+            
+            String path1 = prevX + "" + prevY + "" + x + "" + y;
+            String path2 = x + "" + y + "" + prevX + "" + prevY;
+            
+            visit.add(path1);
+            visit.add(path2);
         }
-        return answer;
+        return visit.size() / 2;
     }
 }
