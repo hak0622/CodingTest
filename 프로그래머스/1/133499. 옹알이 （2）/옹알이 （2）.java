@@ -1,22 +1,25 @@
 class Solution {
     public int solution(String[] babbling) {
         int answer = 0;
+        String[]can = {"aya","ye","woo","ma"};
         
-        for(int i=0; i<babbling.length; i++){
-            String b = babbling[i];
+        for(String s : babbling){
+            boolean isContinue = false;
             
-            if(b.contains("ayaaya") || b.contains("yeye") || b.contains("woowoo") || b.contains("mama")){
-                continue;
+            for(String val : can){
+                if(s.contains(val + val)){
+                    isContinue = true;
+                    break;
+                }
             }
             
-            b = b.replace("aya", "0");
-            b = b.replace("ye", "0");
-            b = b.replace("woo", "0");
-            b = b.replace("ma", "0");
+            if(isContinue) continue;
             
-            b = b.replace("0","");
+            for(String val : can){
+                s = s.replace(val, " ");
+            }
             
-            if(b.isEmpty()){
+            if(s.trim().length() == 0){
                 answer++;
             }
         }
