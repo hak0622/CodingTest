@@ -1,31 +1,32 @@
 class Solution {
     public int solution(int[] array) {
+        int answer = 0;
+        int maxCount = 0;
+        int repeat = 0;
+        
         int[]count = new int[1000];
-        int max = 0;
-        int cnt = 0;
-        int answer = -1;
+        
+        if(array.length == 1){
+            return array[0];
+        }
         
         for(int num : array){
             count[num]++;
         }
         
-        for(int c : count){
-            if(c > max){
-                max = c;
-            }
-        }
-        
         for(int i=0; i<1000; i++){
-            if(count[i] == max){
-                cnt++;
+            if(count[i] > maxCount){
+                maxCount = count[i];
                 answer = i;
             }
         }
         
-        if(cnt>=2){
-            return -1;
+        for(int i=0; i<1000; i++){
+            if(count[i] == maxCount){
+                repeat++;
+            }
         }
         
-        return answer;
+        return repeat > 1 ? -1 : answer;
     }
 }
