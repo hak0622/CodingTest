@@ -1,26 +1,29 @@
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int a = sc.nextInt();
-        int b = sc.nextInt();
-        boolean[] isPrime = new boolean[b+1];
-        Arrays.fill(isPrime, true);
-        isPrime[0]=false;
-        isPrime[1]=false;
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
 
-        for(int i=2; i<=Math.sqrt(b); i++){
-            if(isPrime[i]==true){
-                for(int j=i*i; j<=b ; j+=i){
-                    isPrime[j]=false;
-                }
-            }
-        }
-        for(int i=a; i<=b; i++){
-            if(isPrime[i]){
+        int M = Integer.parseInt(st.nextToken());
+        int N = Integer.parseInt(st.nextToken());
+
+        for(int i=M; i<=N; i++){
+            if(isPrime(i)){
                 System.out.println(i);
             }
         }
+    }
+
+    public static boolean isPrime(int n){
+        if(n < 2) return false;
+
+        for(int i=2; i*i <= n; i++){
+            if(n % i == 0) return false;
+        }
+        return true;
     }
 }
