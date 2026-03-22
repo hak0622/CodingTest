@@ -7,15 +7,14 @@ class Solution {
     }
     
     public void dfs(int[]numbers,int target,int depth,int sum){
-        
         if(depth == numbers.length){
-            if(sum == target){
+            if(target == sum){
                 answer++;
             }
             return;
         }
         
-        dfs(numbers,target,depth+1,sum + numbers[depth]);
-        dfs(numbers,target,depth+1,sum - numbers[depth]);
+        dfs(numbers,target,depth + 1,sum + numbers[depth]);
+        dfs(numbers,target,depth + 1,sum - numbers[depth]);
     }
 }
