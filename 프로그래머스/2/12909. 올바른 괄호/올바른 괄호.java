@@ -2,7 +2,6 @@ import java.util.*;
 
 class Solution {
     boolean solution(String s) {
-        boolean answer = true;
         Stack<Character>st = new Stack<>();
         
         for(int i=0; i<s.length(); i++){
@@ -12,17 +11,16 @@ class Solution {
                 return false;
             }
             
-            if(c == '('){
+            if(st.isEmpty() || c == '('){
                 st.push(c);
-            }else{
+            }
+            
+            if(!st.isEmpty() && c == ')'){
                 st.pop();
             }
         }
         
-        if(!st.isEmpty()){
-            return false;
-        }
-        
-        return answer;
+
+        return st.isEmpty() ? true : false;
     }
 }
