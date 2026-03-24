@@ -1,24 +1,31 @@
-import java.util.*;
-
 class Solution {
-    List<String>list = new ArrayList<>();
     String[]vowels = {"A","E","I","O","U"};
+    int count = 0;
+    int answer = 0;
+    boolean found = false;
     
     public int solution(String word) {
-        generate("");
-        Collections.sort(list);
-        return list.indexOf(word) + 1;
+        dfs("",word);
+        return answer;
     }
     
-    public void generate(String cur){
-        if(cur.length() > 5){
-            return;
+    public void dfs(String current,String word){
+        if(found) return;
+        
+        if(!current.equals("")){
+            count++;
+            
+            if(current.equals(word)){
+                answer = count;
+                found = true;
+                return;
+            }
         }
-        if(!cur.equals("")){
-            list.add(cur);
-        }
-        for(String v : vowels){
-            generate(cur + v);
+        
+        if(current.length() == 5) return;
+        
+        for(int i=0; i<vowels.length; i++){
+            dfs(current + vowels[i], word);
         }
     }
 }
