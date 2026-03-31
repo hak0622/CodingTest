@@ -2,24 +2,20 @@ class Solution {
     public int solution(String skill, String[] skill_trees) {
         int answer = 0;
 
-		for (int i = 0; i < skill_trees.length; i++) {
-			String[] s = skill_trees[i].split("");
-			int index = 0;
-			boolean ck = true;
+        for (String tree : skill_trees) {
+            String filtered = "";
 
-			for (int j = 0; j < s.length; j++) {
-				if (index < skill.indexOf(s[j])) {
-					ck = false;
-					break;
-				} else if (index == skill.indexOf(s[j])) {
-					index++;
-				}
-			}
+            for (char c : tree.toCharArray()) {
+                if (skill.contains(String.valueOf(c))) {
+                    filtered += c;
+                }
+            }
 
-			if (ck) {
-				answer++;
-			}
-		}
-		return answer;
+            if (skill.startsWith(filtered)) {
+                answer++;
+            }
+        }
+
+        return answer;
     }
 }
