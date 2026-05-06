@@ -16,8 +16,8 @@ class Solution {
         }
         
         Queue<Integer>q = new LinkedList<>();
-        boolean[]visited = new boolean[n + 1];
-        int[]dist = new int[n + 1];
+        boolean[]visited = new boolean[n+1];
+        int[]dist = new int[n+1];
         
         q.add(1);
         visited[1] = true;
@@ -35,8 +35,9 @@ class Solution {
         }
         int maxDist = 0;
         for(int i=0; i<=n; i++){
-            maxDist = Math.max(maxDist,dist[i]);
+            maxDist = Math.max(maxDist, dist[i]);
         }
+        
         int answer = 0;
         for(int i=1; i<=n; i++){
             if(dist[i] == maxDist) answer++;
