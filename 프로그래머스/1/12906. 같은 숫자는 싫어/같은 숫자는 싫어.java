@@ -1,22 +1,21 @@
 import java.util.*;
 
 public class Solution {
-    public int[] solution(int []arr) {
+    public int[] solution(int[] arr) {
+        List<Integer> list = new ArrayList<>();
+        int lastNum = -1; 
         
-        Stack<Integer>st = new Stack<>();
-        
-        for(int i=0; i<arr.length; i++){
-            if(st.isEmpty()){
-                st.push(arr[i]);
-                continue;
+        for (int num : arr) {
+            if (num != lastNum) {
+                list.add(num);
+                lastNum = num;
             }
-            
-            if(!st.isEmpty() && st.peek() == arr[i]){
-                continue;
-            }
-            st.push(arr[i]);
         }
-
-        return st.stream().mapToInt(Integer::intValue).toArray();
+        
+        int[] answer = new int[list.size()];
+        for (int i = 0; i < list.size(); i++) {
+            answer[i] = list.get(i);
+        }
+        return answer;
     }
 }
