@@ -8,11 +8,8 @@ class Solution {
         for(int i=0; i<citations.length; i++){
             int h = citations.length - i;
             
-            if(citations[i] >= h){
-                answer = h;
-                break;
-            }
+            if(citations[i] >= h) return h;
         }
-        return answer;
+        return 0;
     }
 }
