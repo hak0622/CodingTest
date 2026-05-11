@@ -2,34 +2,29 @@ import java.util.*;
 
 class Solution {
     public int[] solution(int[] progresses, int[] speeds) {
-        Stack<Integer>st = new Stack<>();
-        List<Integer>list = new ArrayList<>();
-        int answer = 0;
+        int[]days = new int[progresses.length];
         
-        for(int i=0; i<progresses.length; i++){
-            int n = (int)Math.ceil((100 - (double)progresses[i]) / (double)speeds[i]);
-            System.out.println("계산 후 = " + n);
-            
-            if(st.isEmpty()){
-                answer++;
-                st.push(n);
-                System.out.println("answer = " + answer + " 비었었던 스택 = " + st);
-            }else if(st.peek() >= n){
-                answer++;
-                System.out.println("answer = " + answer + " peek 후 스택 = " + st);
-            }else if(st.peek() < n){
-                st.pop();
-                list.add(answer);
-                answer = 1;
-                st.push(n);
-                System.out.println("answer = " + answer + " pop 후 스택 = " + st);
+        for(int i=0; i<days.length; i++){
+            if((100 - progresses[i]) % speeds[i] != 0) days[i] = (100 - progresses[i]) / speeds[i] + 1;
+            else days[i] = (100 - progresses[i]) / speeds[i];
+        }
+        
+        List<Integer>list = new ArrayList<>();
+        int day = days[0];
+        int count = 1;
+        
+        for(int i=1; i<days.length; i++){
+            if(days[i] <= day) {
+                count++;
+            }
+            else{
+                list.add(count);
+                count = 1;
+                day = days[i];
             }
         }
+        list.add(count);
         
-        if(answer != 0){
-            list.add(answer);
-        }
-        
-        return list.stream().mapToInt(Integer::intValue).toArray();
+        return list.stream().mapToInt(i->i).toArray();
     }
 }
