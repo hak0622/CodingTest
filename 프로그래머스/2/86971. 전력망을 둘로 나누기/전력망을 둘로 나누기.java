@@ -1,8 +1,8 @@
 import java.util.*;
 
 class Solution {
-    boolean[]visited;
     List<List<Integer>>graph = new ArrayList<>();
+    boolean[]visited;
     
     public int solution(int n, int[][] wires) {
         int answer = n;
@@ -27,18 +27,17 @@ class Solution {
             
             int count = dfs(v1,v2);
             int diff = Math.abs(count - (n - count));
-            answer= Math.min(answer, diff);
+            answer = Math.min(answer, diff);
         }
         return answer;
     }
-    
-    public int dfs(int curr, int block){
-        visited[curr] = true;
+    public int dfs(int cur,int stop){
+        visited[cur] = true;
         int count = 1;
         
-        for(int next : graph.get(curr)){
-            if(!visited[next] && next != block){
-                count = count + dfs(next, block);
+        for(int next : graph.get(cur)){
+            if(!visited[next] && next != stop){
+                count = count + dfs(next, stop);
             }
         }
         return count;
