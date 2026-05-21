@@ -16,16 +16,16 @@ class Solution {
             if(cur.equals(target)) return step;
             
             for(int i=0; i<words.length; i++){
-                if(!visited[i] && confirm(cur, words[i])){
+                if(!visited[i] && confirm(cur,words[i])){
                     visited[i] = true;
                     q.add(words[i]);
                     depth.add(step + 1);
                 }
             }
         }
-        
         return 0;
     }
+    
     
     public boolean confirm(String a, String b){
         int diff = 0;
