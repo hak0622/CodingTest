@@ -9,10 +9,11 @@ class Solution {
         int m = maps[0].length;
         boolean[][]visited = new boolean[n][m];
         Queue<int[]>q = new LinkedList<>();
+        int dist = 0;
         
         q.add(new int[]{0,0});
         visited[0][0] = true;
-        int dist = 1;
+        dist = dist + 1;
         
         while(!q.isEmpty()){
             int size = q.size();
@@ -28,7 +29,7 @@ class Solution {
                     int nx = x + dx[d];
                     int ny = y + dy[d];
                     
-                    if(nx>=0 && nx<n && ny>=0 && ny<m && maps[nx][ny] == 1&& !visited[nx][ny]){
+                    if(nx>=0 && nx<n && ny>=0 && ny<m && maps[nx][ny] == 1 && !visited[nx][ny]){
                         visited[nx][ny] = true;
                         q.add(new int[]{nx,ny});
                     }
