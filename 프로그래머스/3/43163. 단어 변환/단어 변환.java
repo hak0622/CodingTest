@@ -2,8 +2,8 @@ import java.util.*;
 
 class Solution {
     public int solution(String begin, String target, String[] words) {
-        Queue<String>q = new LinkedList<>();
         Queue<Integer>depth = new LinkedList<>();
+        Queue<String>q = new LinkedList<>();
         boolean[]visited = new boolean[words.length];
         
         q.add(begin);
@@ -16,7 +16,7 @@ class Solution {
             if(cur.equals(target)) return step;
             
             for(int i=0; i<words.length; i++){
-                if(!visited[i] && confirm(cur,words[i])){
+                if(!visited[i] && check(cur, words[i])){
                     visited[i] = true;
                     q.add(words[i]);
                     depth.add(step + 1);
@@ -26,8 +26,7 @@ class Solution {
         return 0;
     }
     
-    
-    public boolean confirm(String a, String b){
+    public boolean check(String a, String b){
         int diff = 0;
         
         for(int i=0; i<a.length(); i++){
