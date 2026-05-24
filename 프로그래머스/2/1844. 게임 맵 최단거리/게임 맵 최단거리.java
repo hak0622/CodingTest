@@ -9,11 +9,10 @@ class Solution {
         int m = maps[0].length;
         boolean[][]visited = new boolean[n][m];
         Queue<int[]>q = new LinkedList<>();
-        int dist = 0;
         
         q.add(new int[]{0,0});
         visited[0][0] = true;
-        dist = dist + 1;
+        int dist = 1;
         
         while(!q.isEmpty()){
             int size = q.size();
