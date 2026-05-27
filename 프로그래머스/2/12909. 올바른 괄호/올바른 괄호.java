@@ -3,24 +3,19 @@ import java.util.*;
 class Solution {
     boolean solution(String s) {
         Stack<Character>st = new Stack<>();
+        boolean answer = true;
         
         for(int i=0; i<s.length(); i++){
             char c = s.charAt(i);
             
-            if(st.isEmpty() && c == ')'){
-                return false;
-            }
-            
-            if(st.isEmpty() || c == '('){
+            if(c == '('){
                 st.push(c);
-            }
-            
-            if(!st.isEmpty() && c == ')'){
+            }else{
+                if(st.isEmpty()) return false;
                 st.pop();
             }
         }
         
-
-        return st.isEmpty() ? true : false;
+        return st.isEmpty();
     }
 }
