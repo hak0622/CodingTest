@@ -12,9 +12,8 @@ class Solution {
                 answer++;
                 break;
             }
-            if(people[front] + people[end] <= limit){
-                front++;
-            }
+            if(people[front] + people[end] <= limit) front++;
+            
             end--;
             answer++;
         }
