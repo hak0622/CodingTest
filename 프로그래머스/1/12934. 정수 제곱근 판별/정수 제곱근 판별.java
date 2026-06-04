@@ -1,13 +1,7 @@
 class Solution {
     public long solution(long n) {
-        long answer = 0;
-        double a = Math.sqrt(n);
-        System.out.println(a);
-        if(a % 1 ==0){
-            answer = (long)Math.pow(a+1,2);
-        }else{
-            answer = -1;
-        }
-        return answer;
+        long answer = (long)Math.sqrt(n);
+        if(answer * answer == n) return (long)Math.pow(answer + 1, 2);
+        else return -1;
     }
 }
