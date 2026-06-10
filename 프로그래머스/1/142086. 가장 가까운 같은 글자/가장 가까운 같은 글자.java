@@ -1,19 +1,19 @@
+import java.util.*;
+
 class Solution {
     public int[] solution(String s) {
         int[] answer = new int[s.length()];
+        HashMap<Character,Integer>map = new HashMap<>();
         
         for(int i=0; i<s.length(); i++){
             char c = s.charAt(i);
-            int result = -1;
             
-            for(int j=i-1; j>=0; j--){
-                if(c == s.charAt(j)){
-                    result = i - j;
-                    break;
-                }
+            if(!map.containsKey(c)) answer[i] = -1;
+            else{
+                int index = map.get(c);
+                answer[i] = i - index;
             }
-            
-            answer[i] = result;
+            map.put(c,i);
         }
         return answer;
     }
