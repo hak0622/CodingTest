@@ -3,11 +3,9 @@ class Solution {
         int answer = 0;
         
         while(n >= a){
-            int changed = n / a;
-            int can = changed * b;
-            
-            answer = answer + can;
-            n = can + (n % a);
+            int mok = (n / a) * b;
+            n = n - (n/a * a) + mok; 
+            answer = answer + mok;
         }
         return answer;
     }
