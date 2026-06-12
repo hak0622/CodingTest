@@ -3,26 +3,20 @@ import java.util.*;
 class Solution {
     public int solution(int k, int[] tangerine) {
         int answer = 0;
-        List<Integer>list = new ArrayList<>();
-        Map<Integer,Integer>map = new HashMap<>();
+        HashMap<Integer,Integer>map = new HashMap<>();
         
-        for(int n : tangerine){
-            map.put(n, map.getOrDefault(n,0) + 1);
+        for(int t : tangerine){
+            map.put(t,map.getOrDefault(t,0)+1);
         }
         
-        for(int n : map.values()){
-            list.add(n);
-        }
+        List<Integer>list = new ArrayList<>(map.values());
+        list.sort(Collections.reverseOrder());
         
-        Collections.sort(list);
-        
-        for(int i=list.size()-1; i>=0; i--){
+        for(int i=0; i<list.size(); i++){
+            if(k <= 0) return answer;
+            
             k = k - list.get(i);
             answer++;
-            
-            if(k <= 0){
-                break;
-            }
         }
         return answer;
     }
