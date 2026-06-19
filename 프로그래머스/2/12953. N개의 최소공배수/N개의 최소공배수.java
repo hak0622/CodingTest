@@ -1,24 +1,26 @@
 class Solution {
     public int solution(int[] arr) {
-        int answer = arr[0];
+        if(arr.length == 1) return arr[0];
+        
+        int cur = arr[0];
         
         for(int i=1; i<arr.length; i++){
-            answer = LCM(answer,arr[i]);
+            cur = lcm(cur, arr[i]);
         }
         
-        return answer;
+        return cur;
     }
     
-    public int GCD(int a, int b){
-        while(b != 0){
-            int r = a % b;
+    public int gcd(int a, int b){
+        while(b > 0){
+            int tmp = a % b;
             a = b;
-            b = r;
+            b = tmp;
         }
         return a;
     }
     
-    public int LCM(int a, int b){
-        return (a * b) / GCD(a,b);
+    public int lcm(int a, int b){
+        return (a * b) / gcd(a,b);
     }
 }
