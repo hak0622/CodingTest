@@ -13,9 +13,9 @@ class Solution {
     
     public int gcd(int a, int b){
         while(b > 0){
-            int tmp = a % b;
+            int num = a % b;
             a = b;
-            b = tmp;
+            b = num;
         }
         return a;
     }
