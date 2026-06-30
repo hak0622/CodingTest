@@ -1,35 +1,41 @@
-import java.util.*;
+import java.util.Stack;
 
 class Solution {
     public int solution(String s) {
         int answer = 0;
-        String doubleS = s + s;
+        int len = s.length();
         
-        for(int i=0; i<s.length(); i++){
-            if(isValid(doubleS.substring(i,i+s.length()))){
+        for (int i = 0; i < len; i++) {
+            if (isValid(s, i, len)) {
                 answer++;
             }
         }
+        
         return answer;
     }
-    boolean isValid(String s){
-        Stack<Character>st = new Stack<>();
+    
+    private boolean isValid(String s, int start, int len) {
+        Stack<Character> stack = new Stack<>();
         
-        for(char cur :s.toCharArray()){
-            if(cur=='('|| cur=='{'||cur=='['){
-                st.push(cur);
-            }else{
-                if(st.isEmpty()){
-                    return false;
-                }
-                char target = st.pop();
-                if((target == '('&&cur != ')')||
-                   (target == '('&&cur != ')')||
-                   (target == '('&&cur != ')')){
+        for (int i = 0; i < len; i++) {
+            char c = s.charAt((start + i) % len);
+            
+            if (c == '[' || c == '{' || c == '(') {
+                stack.push(c);
+            } else {
+                if (stack.isEmpty()) return false;
+                
+                char top = stack.peek();
+                if ((c == ']' && top == '[') || 
+                    (c == '}' && top == '{') || 
+                    (c == ')' && top == '(')) {
+                    stack.pop();
+                } else {
                     return false;
                 }
             }
         }
-        return st.isEmpty();
+        
+        return stack.isEmpty();
     }
 }
