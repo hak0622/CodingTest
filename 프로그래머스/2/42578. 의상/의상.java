@@ -6,13 +6,13 @@ class Solution {
         HashMap<String,Integer>map = new HashMap<>();
         
         for(int i=0; i<clothes.length; i++){
-            map.put(clothes[i][1], map.getOrDefault(clothes[i][1],0) + 1);
+            map.put(clothes[i][1],map.getOrDefault(clothes[i][1],0)+1);
         }
         
-        for(int count : map.values()){
-            answer = answer * (count + 1);
+        for(int v : map.values()){
+            answer = answer * (v+1);
         }
         
-        return answer - 1;
+        return answer-1;
     }
 }
