@@ -1,23 +1,21 @@
 class Solution {
-    public int solution(int[][] sizes) {
-        int[][]resizes = new int[sizes.length][sizes[0].length];
-        
+    public int solution(int[][] sizes) {        
         for(int i=0; i<sizes.length; i++){
-            int w = Math.max(sizes[i][0], sizes[i][1]);
-            int h = Math.min(sizes[i][0], sizes[i][1]);
-            
-            resizes[i][0] = w;
-            resizes[i][1] = h;
+            if(sizes[i][0] > sizes[i][1]) continue;
+            else{
+                int temp = sizes[i][1];
+                sizes[i][1] = sizes[i][0];
+                sizes[i][0] = temp;
+            }
         }
         
-        int maxW = resizes[0][0];
-        int maxH = resizes[0][1];
+        int wmax = sizes[0][0];
+        int hmax = sizes[0][1];
         
-        for(int i=1; i<resizes.length; i++){
-            if(maxW < resizes[i][0]) maxW = resizes[i][0];
-            if(maxH < resizes[i][1]) maxH = resizes[i][1];
+        for(int i=1; i<sizes.length; i++){
+            wmax = Math.max(wmax, sizes[i][0]);
+            hmax = Math.max(hmax, sizes[i][1]);
         }
-        
-        return maxW * maxH;
+        return wmax * hmax;
     }
 }
