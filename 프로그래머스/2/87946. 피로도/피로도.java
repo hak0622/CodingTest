@@ -6,8 +6,10 @@ class Solution {
         dfs(k,dungeons,visited,0);
         return answer;
     }
-    public void dfs(int k,int[][]dungeons,boolean[]visited, int count){
-        answer = Math.max(answer, count);
+    
+    public void dfs(int k, int[][]dungeons, boolean[]visited, int count){
+        if(answer < count) answer = count;
+        
         for(int i=0; i<dungeons.length; i++){
             if(!visited[i] && k >= dungeons[i][0]){
                 visited[i] = true;
