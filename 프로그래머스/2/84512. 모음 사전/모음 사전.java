@@ -1,9 +1,9 @@
 class Solution {
     int answer = 0;
-    char[]vowels = {'A','E','I','O','U'};
     int count = 0;
+    char[]c = {'A','E','I','O','U'};
     
-    public int solution(String word) {        
+    public int solution(String word) {
         dfs("", word);
         return answer;
     }
@@ -18,7 +18,7 @@ class Solution {
         
         for(int i=0; i<5; i++){
             count++;
-            dfs(cur + vowels[i], target);
+            dfs(cur + c[i], target);
             if(answer != 0) return;
         }
     }
