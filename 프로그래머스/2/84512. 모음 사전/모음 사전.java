@@ -8,18 +8,17 @@ class Solution {
         return answer;
     }
     
-    public void dfs(String cur, String target){
-        if(cur.equals(target)){
+    public void dfs(String s, String target){
+        if(s.equals(target)){
             answer = count;
             return;
         }
         
-        if(cur.length() >= 5) return;
+        if(s.length() >= 5) return;
         
-        for(int i=0; i<5; i++){
+        for(int i=0; i<c.length; i++){
             count++;
-            dfs(cur + c[i], target);
-            if(answer != 0) return;
+            dfs(s + c[i], target);
         }
     }
 }
