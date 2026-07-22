@@ -31,7 +31,8 @@ class Solution {
         }
         return answer;
     }
-    public int dfs(int cur,int stop){
+    
+    public int dfs(int cur, int stop){
         visited[cur] = true;
         int count = 1;
         
