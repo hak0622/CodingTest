@@ -2,37 +2,39 @@ import java.util.*;
 
 class Solution {
     public int solution(String begin, String target, String[] words) {
-        Queue<Integer>depth = new LinkedList<>();
-        Queue<String>q = new LinkedList<>();
+        int answer = 0;
+        Queue<Integer>q = new LinkedList<>();
+        Queue<String>s = new LinkedList<>();
         boolean[]visited = new boolean[words.length];
         
-        q.add(begin);
-        depth.add(0);
+        q.add(0);
+        s.add(begin);
         
         while(!q.isEmpty()){
-            String cur = q.poll();
-            int step = depth.poll();
+            String cur = s.poll();
+            int step = q.poll();
             
             if(cur.equals(target)) return step;
             
             for(int i=0; i<words.length; i++){
-                if(!visited[i] && check(cur, words[i])){
+                if(!visited[i] && diff(cur, words[i])){
                     visited[i] = true;
-                    q.add(words[i]);
-                    depth.add(step + 1);
+                    s.add(words[i]);
+                    q.add(step + 1);
                 }
             }
         }
-        return 0;
+        
+        return answer;
     }
     
-    public boolean check(String a, String b){
-        int diff = 0;
+    public boolean diff(String a, String b){
+        int count = 0;
         
         for(int i=0; i<a.length(); i++){
-            if(a.charAt(i) != b.charAt(i)) diff++;
+            if(a.charAt(i) != b.charAt(i)) count++;
         }
         
-        return diff == 1;
+        return count == 1;
     }
 }
