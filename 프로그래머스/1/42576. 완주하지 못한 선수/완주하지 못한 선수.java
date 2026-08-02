@@ -9,14 +9,15 @@ class Solution {
         }
         
         for(int i=0; i<completion.length; i++){
-            map.put(completion[i], map.get(completion[i]) - 1);
-        }
-        
-        for(String key : map.keySet()){
-            if(map.get(key) > 0){
-                return key;
+            if(map.containsKey(completion[i])){
+                map.put(completion[i], map.get(completion[i]) - 1);
             }
         }
+        
+        for(String s : map.keySet()){
+            if(map.get(s) > 0) return s; 
+        }
+        
         return "";
     }
 }
