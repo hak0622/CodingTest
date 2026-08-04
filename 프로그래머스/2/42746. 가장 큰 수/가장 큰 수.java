@@ -2,17 +2,18 @@ import java.util.*;
 
 class Solution {
     public String solution(int[] numbers) {
-        String[]strNumbers = new String[numbers.length];
+        String[]arr = new String[numbers.length];
+        StringBuilder sb = new StringBuilder();
+        
         for(int i=0; i<numbers.length; i++){
-            strNumbers[i] = String.valueOf(numbers[i]);
+            arr[i] = numbers[i] + "";
         }
         
-        Arrays.sort(strNumbers, (o1,o2)->(o2+o1).compareTo(o1+o2));
+        Arrays.sort(arr, (o1,o2)-> (o2+o1).compareTo(o1+o2));
         
-        if(strNumbers[0].equals("0")) return "0";
+        if(arr[0].equals("0")) return "0";
         
-        StringBuilder sb = new StringBuilder();
-        for(String s : strNumbers){
+        for(String s: arr){
             sb.append(s);
         }
         
