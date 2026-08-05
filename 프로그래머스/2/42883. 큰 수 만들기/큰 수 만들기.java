@@ -1,21 +1,25 @@
+import java.util.*;
+
 class Solution {
     public String solution(String number, int k) {
-        String ans = "";
+        StringBuilder sb = new StringBuilder();
+        Stack<Character>st = new Stack<>();
+        int count = 0;
         
         for(int i=0; i<number.length(); i++){
             char c = number.charAt(i);
             
-            while(ans.length() > 0 && ans.charAt(ans.length()-1) < c && k > 0){
-                ans = ans.substring(0, ans.length() - 1);
-                k--;
+            while(!st.isEmpty() && st.peek() < c && count < k){
+                st.pop();
+                count++;
             }
-            
-            ans = ans + c;
+            st.push(c);
         }
         
-        if(k > 0){
-            ans = ans.substring(0, ans.length() - k);
+        for(int i=0; i<number.length()-k; i++){
+            sb.append(st.get(i));
         }
-        return ans;
+        
+        return sb.toString();
     }
 }
