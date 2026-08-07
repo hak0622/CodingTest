@@ -6,7 +6,6 @@ class Solution {
         for(int i=1; i<=n; i++){
             clothes[i] = 1;
         }
-        
         for(int l : lost){
             clothes[l]--;
         }
@@ -29,7 +28,6 @@ class Solution {
         for(int i=1; i<=n; i++){
             if(clothes[i] >= 1) answer++;
         }
-        
         return answer;
     }
 }
