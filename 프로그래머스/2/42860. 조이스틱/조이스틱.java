@@ -1,27 +1,21 @@
 class Solution {
     public int solution(String name) {
-        int alphabetMove = 0;
-        int len = name.length();
-        int minCursorMove = len - 1; 
+        int answer = 0;
+        int minMove = name.length() - 1;
         
-        for(int i = 0; i < len; i++){
+        for(int i=0; i<name.length(); i++){
             char c = name.charAt(i);
             
-            if(c <= 'N'){
-                alphabetMove += c - 'A';
-            } else {
-                alphabetMove += 'Z' - c + 1;
+            answer += Math.min(c - 'A', 'Z' - c + 1);
+            
+            int nextIdx = i + 1;
+            while(nextIdx < name.length() && name.charAt(nextIdx) == 'A'){
+                nextIdx++;
             }
             
-            int next = i + 1;
-            while(next < len && name.charAt(next) == 'A') {
-                next++;
-            }
-            
-            minCursorMove = Math.min(minCursorMove, i * 2 + len - next);
-            minCursorMove = Math.min(minCursorMove, (len - next) * 2 + i);
+            minMove = Math.min(minMove, i*2+(name.length() - nextIdx));
+            minMove = Math.min(minMove, (name.length() - nextIdx) * 2 + i);
         }
-        
-        return alphabetMove + minCursorMove;
+        return answer + minMove;
     }
 }
