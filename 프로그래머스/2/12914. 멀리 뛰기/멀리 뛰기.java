@@ -1,9 +1,8 @@
 class Solution {
     public long solution(int n) {
-        if (n == 1) return 1;
+        if(n == 1) return 1;
         
         long[]jump = new long[n+1];
-        
         jump[1] = 1;
         jump[2] = 2;
         
