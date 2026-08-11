@@ -1,19 +1,18 @@
 class Solution {
     public int[] solution(int brown, int yellow) {
+        int[] answer = new int[2];
         int sum = brown + yellow;
-        
         
         for(int i=1; i<=sum; i++){
             if(sum % i == 0){
-                int height = i;
                 int width = sum / i;
-                
-                if (width >= height && (width - 2) * (height - 2) == yellow) {
-                    return new int[]{width, height};
+                int height = sum / width;
+                if(width >= height && (width - 2) * (height - 2) == yellow){
+                    answer[0] = width;
+                    answer[1] = height;
                 }
             }
         }
-        
-        return new int[]{0};
+        return answer;
     }
 }
