@@ -1,19 +1,23 @@
-import java.util.*;
-
 class Solution {
     public int[] solution(String s) {
         int[] answer = new int[s.length()];
-        HashMap<Character,Integer>map = new HashMap<>();
         
-        for(int i=0; i<s.length(); i++){
-            char c = s.charAt(i);
+        for(int i=s.length()-1; i>=0; i--){
+            int count = 1;
+            boolean found = false;
             
-            if(!map.containsKey(c)) answer[i] = -1;
-            else{
-                int index = map.get(c);
-                answer[i] = i - index;
+            for(int j=i-1; j>=0; j--){
+                if(s.charAt(i) == s.charAt(j)){
+                    answer[i] = count;
+                    found = true;
+                    break;
+                }
+                count++;
             }
-            map.put(c,i);
+            
+            if(!found){
+                answer[i] = -1;
+            }
         }
         return answer;
     }
