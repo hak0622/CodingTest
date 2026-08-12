@@ -5,13 +5,12 @@ class Solution {
         for(int i=0; i<s.length(); i++){
             char c = s.charAt(i);
             
-            if(c == ' ') sb.append(" ");
-            else if(c>='A' && c<='Z'){
-                char move = (char)(((c-'A')+n) % 26 + 'A');
-                sb.append(move);
-            }else if(c>='a' && c<='z'){
-                char move = (char)(((c-'a')+n) % 26 + 'a');
-                sb.append(move);
+            if(c >= 'a' && c <= 'z'){
+                sb.append((char)((c - 'a' + n) % 26 + 97) + "");
+            }else if(c >= 'A' && c <= 'Z'){
+                sb.append((char)((c - 'A' + n) % 26 + 65) + "");
+            }else{
+                sb.append(" ");
             }
         }
         return sb.toString();
