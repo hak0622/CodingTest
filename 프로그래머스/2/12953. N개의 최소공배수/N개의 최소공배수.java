@@ -1,21 +1,19 @@
 class Solution {
     public int solution(int[] arr) {
-        if(arr.length == 1) return arr[0];
-        
-        int cur = arr[0];
+        int answer = arr[0];
         
         for(int i=1; i<arr.length; i++){
-            cur = lcm(cur, arr[i]);
+            answer = lcm(answer, arr[i]);
         }
         
-        return cur;
+        return answer;
     }
     
     public int gcd(int a, int b){
-        while(b > 0){
-            int num = a % b;
+        while(b != 0){
+            int temp = a % b;
             a = b;
-            b = num;
+            b = temp;
         }
         return a;
     }
