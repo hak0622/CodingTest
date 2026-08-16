@@ -9,9 +9,9 @@ class Solution{
             
             if(!st.isEmpty() && st.peek() == c){
                 st.pop();
-                continue;
+            }else{
+                st.push(c);
             }
-            st.push(c);
         }
         return st.isEmpty() ? 1 : 0;
     }
