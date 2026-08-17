@@ -7,7 +7,7 @@ class Solution {
         
         for(int i=0; i<elements.length; i++){
             copy[i] = elements[i];
-            copy[i + elements.length] = elements[i];
+            copy[i + elements.length] = elements[i];            
         }
         
         for(int i=0; i<elements.length; i++){
@@ -17,7 +17,6 @@ class Solution {
                 set.add(sum);
             }
         }
-        
         return set.size();
     }
 }
