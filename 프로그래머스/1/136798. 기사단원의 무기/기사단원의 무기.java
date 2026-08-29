@@ -1,28 +1,21 @@
 class Solution {
     public int solution(int number, int limit, int power) {
-        int totalWeight = 0;
+        int answer = 0;
         
-        for (int i = 1; i <= number; i++) {
-            int count = getDivisorCount(i);
+        for(int i=1; i<=number; i++){
+            int cnt = divide(i);
             
-            if (count > limit) {
-                totalWeight += power;
-            } else {
-                totalWeight += count;
-            }
+            if(cnt <= limit) answer += cnt;
+            else answer += power;
         }
-        
-        return totalWeight;
+        return answer;
     }
     
-    private int getDivisorCount(int n) {
+    public int divide(int n){
         int count = 0;
-        for (int i = 1; i * i <= n; i++) {
-            if (i * i == n) {
-                count++;
-            } else if (n % i == 0) {
-                count += 2;
-            }
+        
+        for(int i=1; i<=n; i++){
+            if(n % i == 0) count++;
         }
         return count;
     }
