@@ -2,20 +2,21 @@ import java.util.*;
 
 class Solution {
     public int[] solution(String s) {
-        String s1 = s.replace("{","");
-        String s2 = s1.replace("}","");
-        String[]s3 = s2.split(",");
+        String trimed = s.substring(2, s.length()-2);
+        String[]arr = trimed.split("\\},\\{");
         
-        Map<String,Integer>map = new HashMap<>();
+        Arrays.sort(arr, (o1,o2)->o1.length() - o2.length());
         
-        for(int i=0; i<s3.length; i++){
-            map.put(s3[i],map.getOrDefault(s3[i],0) + 1);
+        List<Integer>list = new ArrayList<>();
+        
+        for(String s1 : arr){
+            String[]numbers = s1.split(",");
+            for(String str : numbers){
+                int num = Integer.parseInt(str);
+                if(!list.contains(num)) list.add(num);
+            }
         }
         
-        List<String>list = new ArrayList<>(map.keySet());
-        
-        Collections.sort(list,(a,b) -> map.get(b) - map.get(a));
-        
-        return list.stream().mapToInt(Integer::parseInt).toArray();
+        return list.stream().mapToInt(i->i).toArray();
     }
 }
