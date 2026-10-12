@@ -2,39 +2,40 @@ import java.util.*;
 
 class Solution {
     public int solution(String begin, String target, String[] words) {
-        int answer = 0;
-        Queue<Integer>q = new LinkedList<>();
-        Queue<String>s = new LinkedList<>();
         boolean[]visited = new boolean[words.length];
         
-        q.add(0);
-        s.add(begin);
+        Queue<String>q = new LinkedList<>();
+        q.add(begin);
+        
+        int answer = 0;
         
         while(!q.isEmpty()){
-            String cur = s.poll();
-            int step = q.poll();
+            int size = q.size();
             
-            if(cur.equals(target)) return step;
-            
-            for(int i=0; i<words.length; i++){
-                if(!visited[i] && diff(cur, words[i])){
-                    visited[i] = true;
-                    s.add(words[i]);
-                    q.add(step + 1);
+            for(int i=0; i<size; i++){
+                String cur = q.poll();
+                
+                if(cur.equals(target)) return answer;
+                
+                for(int j=0; j<words.length; j++){
+                    if(visited[j]) continue;
+                    
+                    int diff = 0;
+                    
+                    for(int k=0; k<cur.length(); k++){
+                        if(cur.charAt(k) != words[j].charAt(k)){
+                            diff++;
+                        }
+                    }
+                    
+                    if(diff == 1){
+                        visited[j] = true;
+                        q.add(words[j]);
+                    }
                 }
             }
+            answer++;
         }
-        
-        return answer;
-    }
-    
-    public boolean diff(String a, String b){
-        int count = 0;
-        
-        for(int i=0; i<a.length(); i++){
-            if(a.charAt(i) != b.charAt(i)) count++;
-        }
-        
-        return count == 1;
+        return 0;
     }
 }
