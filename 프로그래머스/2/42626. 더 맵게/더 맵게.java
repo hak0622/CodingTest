@@ -2,11 +2,11 @@ import java.util.*;
 
 class Solution {
     public int solution(int[] scoville, int K) {
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
         int answer = 0;
-        PriorityQueue<Integer>pq = new PriorityQueue<>();
         
-        for(int i=0; i<scoville.length; i++){
-            pq.add(scoville[i]);
+        for(int s : scoville){
+            pq.add(s);
         }
         
         while(pq.peek() < K){
@@ -15,12 +15,9 @@ class Solution {
             int one = pq.poll();
             int two = pq.poll();
             
-            int mix = one + (two * 2);
-            
-            pq.add(mix);
+            pq.add(one + (two * 2));
             answer++;
         }
-        
         return answer;
     }
 }
