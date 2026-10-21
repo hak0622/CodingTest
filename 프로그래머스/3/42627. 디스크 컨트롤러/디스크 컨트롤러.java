@@ -2,31 +2,36 @@ import java.util.*;
 
 class Solution {
     public int solution(int[][] jobs) {
-        int answer = 0;
+        int n = jobs.length;
         
-        Arrays.sort(jobs, (a, b) -> a[0] - b[0]);
+        boolean[]visited = new boolean[n];
         
-        PriorityQueue<int[]> pq = new PriorityQueue<>((o1, o2) -> o1[1] - o2[1]);
+        PriorityQueue<int[]>pq = new PriorityQueue<>((a,b)->a[1]-b[1]);
         
-        int index = 0;
+        int time = 0;
         int count = 0;
         int total = 0;
-        int end = 0;
-        while(count < jobs.length) {
-            
-            while(index < jobs.length && jobs[index][0] <= end) {
-                pq.add(jobs[index++]);
+        
+        while(count < n){
+            for(int i=0; i<n; i++){
+                if(!visited[i] && jobs[i][0] <= time){
+                    pq.add(jobs[i]);
+                    visited[i] = true;
+                }
             }
             
-            if(pq.isEmpty()) {
-                end = jobs[index][0];
-            } else {
-                int[] cur = pq.poll();
-                total += cur[1] + end - cur[0];
-                end += cur[1];
+            if(!pq.isEmpty()){
+                int[]job = pq.poll();
+                
+                time = time + job[1];
+                total = total + time - job[0];
+                
                 count++;
+            }else{
+                time++;
             }
         }
-        return total / jobs.length;
+        
+        return total/n;
     }
 }
