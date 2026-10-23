@@ -4,14 +4,14 @@ class Solution {
     int[]parent;
     
     public int solution(int n, int[][] costs) {
-        int answer = 0;
         parent = new int[n];
+        int answer = 0;
         
         for(int i=0; i<n; i++){
             parent[i] = i;
         }
         
-        Arrays.sort(costs,(a,b) -> a[2] - b[2]);
+        Arrays.sort(costs,(a,b)->a[2]-b[2]);
         
         for(int i=0; i<costs.length; i++){
             int a = costs[i][0];
@@ -23,6 +23,7 @@ class Solution {
                 answer = answer + cost;
             }
         }
+        
         return answer;
     }
     
@@ -39,6 +40,3 @@ class Solution {
         return parent[a] = find(parent[a]);
     }
 }
-
-
-
