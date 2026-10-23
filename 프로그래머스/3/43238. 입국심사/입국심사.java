@@ -1,28 +1,28 @@
-import java.util.*;
-
 class Solution {
     public long solution(int n, int[] times) {
         long left = 1;
-        long right = (long) Arrays.stream(times).max().getAsInt() * n;
-
-        while (left <= right) {
-            long mid = (left + right) / 2;
-
-            long count = 0;
-
-            for (int time : times) {
-                count += mid / time;
-
-                if (count >= n) break;
-            }
-
-            if (count >= n) {
-                right = mid - 1;
-            } else {
-                left = mid + 1;
-            }
+        long right = 0;
+        
+        int minTime = Integer.MAX_VALUE;
+        
+        for(int t : times){
+            minTime = Math.min(minTime, t);
         }
-
+        
+        right = (long) minTime * n;
+        
+        while(left < right){
+            long mid = left + (right - left) / 2;
+            
+            long people = 0;
+            
+            for(int t : times){
+                people = people + mid / t;
+            }
+            
+            if(people >= n) right = mid;
+            else left = mid + 1;
+        }
         return left;
     }
 }
