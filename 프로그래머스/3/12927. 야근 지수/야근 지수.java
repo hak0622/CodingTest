@@ -1,28 +1,31 @@
-import java.util.PriorityQueue;
-import java.util.Collections;
+import java.util.*;
 
 class Solution {
     public long solution(int n, int[] works) {
-       PriorityQueue<Integer> overtime = new PriorityQueue<>(Collections.reverseOrder());
+        PriorityQueue<Integer>pq = new PriorityQueue<>(Collections.reverseOrder());
+        int count = 0;
+        int sum = 0;
         
-        for(int work : works){
-            overtime.offer(work);
+        for(int w : works){
+            pq.add(w);
+            sum = sum + w;
         }
         
-        for(int i=0; i<n; i++){
-            int max = (int)overtime.poll();
-            if(max <= 0){
-                break;
-            }
-            overtime.offer(max -1);
+        if(sum < n) return 0;
+        
+        while(count < n){
+            int max = pq.poll() - 1;
+            pq.add(max);
+            count++;
         }
-        return sumPow(overtime);
-    }
-    long sumPow(PriorityQueue<Integer>works){
-        long sum = 0;
-        while(!works.isEmpty()){
-            sum += Math.pow(works.poll(),2);
+        
+        long answer = 0;
+        
+        while(!pq.isEmpty()){
+            int num = pq.poll();
+            answer = answer + num * num;
         }
-        return sum;
+        
+        return answer;
     }
 }
