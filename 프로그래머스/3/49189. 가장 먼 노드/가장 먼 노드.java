@@ -3,6 +3,9 @@ import java.util.*;
 class Solution {
     public int solution(int n, int[][] edge) {
         List<List<Integer>>graph = new ArrayList<>();
+        boolean[]visited = new boolean[n+1];
+        int[]dist = new int[n+1];
+        int answer = 0;
         
         for(int i=0; i<=n; i++){
             graph.add(new ArrayList<>());
@@ -17,11 +20,10 @@ class Solution {
         }
         
         Queue<Integer>q = new LinkedList<>();
-        boolean[]visited = new boolean[n+1];
-        int[]dist = new int[n+1];
         
         q.add(1);
         visited[1] = true;
+        dist[1] = 0;
         
         while(!q.isEmpty()){
             int cur = q.poll();
@@ -36,14 +38,15 @@ class Solution {
         }
         
         int max = 0;
-        for(int i=0; i<=n; i++){
-            max = Math.max(max,dist[i]);
-        }
-        int count = 0;
-        for(int i=0; i<=n; i++){
-            if(max == dist[i]) count++;
+        
+        for(int i=1; i<=n; i++){
+            max = Math.max(max, dist[i]);
         }
         
-        return count;
+        for(int i=1; i<=n; i++){
+            if(max == dist[i]) answer++;
+        }
+        
+        return answer;
     }
 }
