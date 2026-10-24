@@ -1,14 +1,29 @@
-import java.util.*;
 class Solution {
     public int solution(int[][] triangle) {
-        int[][]dp = new int[triangle.length][triangle[triangle.length-1].length];
+        int n = triangle.length;
+        int[][]dp = new int[n][n];
         dp[0][0] = triangle[0][0];
-        for(int i=0; i<triangle.length-1; i++){
-            for(int j=0; j<triangle[i].length; j++){
-                dp[i+1][j] = Math.max(dp[i+1][j],dp[i][j]+triangle[i+1][j]);
-                dp[i+1][j+1]=Math.max(dp[i+1][j+1],dp[i][j]+triangle[i+1][j+1]);
+        
+        for(int i=1; i<n; i++){
+            for(int j=0; j<=i; j++){
+                if(j==0){
+                    dp[i][j] = dp[i-1][j] + triangle[i][j];
+                }else if(j == i){
+                    dp[i][j] = dp[i-1][j-1] + triangle[i][j];
+                }else{
+                    dp[i][j] = Math.max(dp[i-1][j],dp[i-1][j-1]) + triangle[i][j];
+                }
             }
         }
-        return Arrays.stream(dp[dp.length-1]).max().getAsInt();
+        
+        int max = -1;
+        
+        for(int i=0; i<n; i++){
+            if(max < dp[n-1][i]){
+                max = dp[n-1][i];
+            }
+        }
+        
+        return max;
     }
 }
