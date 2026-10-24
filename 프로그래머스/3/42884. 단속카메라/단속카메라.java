@@ -8,11 +8,15 @@ class Solution {
         int camera = -30001;
         
         for(int i=0; i<routes.length; i++){
-            if(routes[i][0] > camera){
-                camera = routes[i][1];
+            int start = routes[i][0];
+            int end = routes[i][1];
+            
+            if(start > camera){
+                camera = end;
                 answer++;
             }
         }
+        
         return answer;
     }
 }
