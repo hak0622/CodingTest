@@ -1,19 +1,19 @@
 class Solution {
     public int solution(int n) {
         int answer = 0;
+        int sum = 0;
+        int left = 1;
+        int right = 1;
         
-        for(int i=1; i<=n; i++){
-            int sum = 0;
-            
-            for(int j=i; j<=n; j++){
-                if(sum > n) break;
+        while(left <= n){
+            if(sum < n && right <= n){
+                sum = sum + right;
+                right++;
+            }else{
+                if(sum == n) answer++;
                 
-                sum = sum + j;
-                
-                if(sum == n) {
-                    answer++;
-                    break;
-                }
+                sum = sum - left;
+                left++;
             }
         }
         return answer;
