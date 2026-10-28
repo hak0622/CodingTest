@@ -6,16 +6,19 @@ class Solution {
         int right = 1;
         
         while(left <= n){
-            if(sum < n && right <= n){
+            if(sum < n){
                 sum = sum + right;
                 right++;
             }else{
-                if(sum == n) answer++;
+                if(sum == n) {
+                    answer++;
+                }
                 
                 sum = sum - left;
                 left++;
             }
         }
+        
         return answer;
     }
 }
