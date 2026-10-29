@@ -1,46 +1,47 @@
-import java.util.*;
-
 class Solution {
-    List<List<Integer>>graph = new ArrayList<>();
-    boolean[]visited;
+    int[]parent;
     
     public int solution(int n, int[][] wires) {
-        int answer = n;
+        parent = new int[n+1];
+        int answer = Integer.MAX_VALUE;
         
-        for(int i=0; i<=n; i++){
-            graph.add(new ArrayList<>());
-        }
-        
-        for(int[]w : wires){
-            int a = w[0];
-            int b = w[1];
+        for(int i=0; i<wires.length; i++){
+            for(int j=1; j<=n; j++){
+                parent[j] = j;
+            }
             
-            graph.get(a).add(b);
-            graph.get(b).add(a);
-        }
-        
-        for(int[]w : wires){
-            int v1 = w[0];
-            int v2 = w[1];
+            for(int k=0; k<wires.length; k++){
+                if(i == k) continue;
+                
+                int a = wires[k][0];
+                int b = wires[k][1];
+                
+                union(a,b);
+            }
             
-            visited = new boolean[n + 1];
+            int count = 0;
             
-            int count = dfs(v1,v2);
+            for(int z=1; z<=n; z++){
+                if(find(1) == find(z)) count++;
+            }
+            
             int diff = Math.abs(count - (n - count));
-            answer = Math.min(answer, diff);
+            answer = Math.min(answer,diff);
         }
+        
         return answer;
     }
     
-    public int dfs(int cur, int stop){
-        visited[cur] = true;
-        int count = 1;
+    public void union(int a, int b){
+        a = find(a);
+        b = find(b);
         
-        for(int next : graph.get(cur)){
-            if(!visited[next] && next != stop){
-                count = count + dfs(next, stop);
-            }
-        }
-        return count;
+        if(a != b) parent[b] = a;
+    }
+    
+    public int find(int a){
+        if(a == parent[a]) return a;
+        
+        return parent[a] = find(parent[a]);
     }
 }
