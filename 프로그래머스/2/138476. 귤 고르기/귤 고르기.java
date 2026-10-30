@@ -4,19 +4,25 @@ class Solution {
     public int solution(int k, int[] tangerine) {
         int answer = 0;
         Map<Integer,Integer>map = new HashMap<>();
+        List<Integer>list = new ArrayList<>();
         
         for(int i=0; i<tangerine.length; i++){
             map.put(tangerine[i],map.getOrDefault(tangerine[i],0)+1);
         }
-        List<Integer>list = new ArrayList<>(map.values());
+        
+        for(int v : map.values()){
+            list.add(v);
+        }
+        
         list.sort(Collections.reverseOrder());
         
-        for(int l : list){
-            k = k - l;
-            answer++;
-            
-            if(k <= 0) break;
+        for(int i=0; i<list.size(); i++){
+            if(k > 0){
+                k = k - list.get(i);
+                answer++;
+            }
         }
+                
         return answer;
     }
 }
