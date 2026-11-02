@@ -3,27 +3,27 @@ import java.util.*;
 class Solution {
     public int[] solution(int[] progresses, int[] speeds) {
         List<Integer>list = new ArrayList<>();
-        int[]days = new int[progresses.length];
+        Stack<Integer>st = new Stack<>();
         
-        for(int i=0; i<days.length; i++){
-            days[i] = (int)Math.ceil((100.0 - progresses[i]) / speeds[i]);
-        }
+        int first = (int)Math.ceil((double)(100 - progresses[0]) /speeds[0]);
+        st.push(first);
+        int idx = 1;
         
-        int max = days[0];
-        int count = 1;
-        
-        for(int i=1; i<days.length; i++){
+        for(int i=1; i<progresses.length; i++){
+            int day = (int)Math.ceil((double)(100 - progresses[i]) / speeds[i]);
             
-            if(max >= days[i]){
-                count++;
+            if(st.peek() < day){
+                list.add(idx);
+                st.pop();
+                st.push(day);
+                idx = 1;
             }else{
-                list.add(count);
-                max = days[i];
-                count = 1;
+                idx++;
             }
         }
         
-        list.add(count);
+        list.add(idx);
+        
         return list.stream().mapToInt(i->i).toArray();
     }
 }
