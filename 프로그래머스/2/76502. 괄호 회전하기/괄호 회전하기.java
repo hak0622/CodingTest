@@ -1,41 +1,31 @@
-import java.util.Stack;
+import java.util.*;
 
 class Solution {
     public int solution(String s) {
         int answer = 0;
-        int len = s.length();
+        int n = s.length();
         
-        for (int i = 0; i < len; i++) {
-            if (isValid(s, i, len)) {
-                answer++;
-            }
-        }
         
-        return answer;
-    }
-    
-    private boolean isValid(String s, int start, int len) {
-        Stack<Character> stack = new Stack<>();
-        
-        for (int i = 0; i < len; i++) {
-            char c = s.charAt((start + i) % len);
+        for(int i=0; i<n; i++){
+            Stack<Character>st = new Stack<>();
+            boolean valid = true;
             
-            if (c == '[' || c == '{' || c == '(') {
-                stack.push(c);
-            } else {
-                if (stack.isEmpty()) return false;
+            for(int j=0; j<n; j++){
+                char c = s.charAt((i+j) % n);
                 
-                char top = stack.peek();
-                if ((c == ']' && top == '[') || 
-                    (c == '}' && top == '{') || 
-                    (c == ')' && top == '(')) {
-                    stack.pop();
-                } else {
-                    return false;
+                if(st.isEmpty() && (c == ']' || c == ')' || c == '}')){
+                    valid = false;
+                    break;
+                }
+                
+                if(!st.isEmpty() && ((st.peek() == '[' && c == ']') || (st.peek() == '{' && c == '}') || (st.peek() == '(' && c == ')'))){
+                    st.pop();
+                }else{
+                    st.push(c);
                 }
             }
+            if(valid && st.isEmpty()) answer++;
         }
-        
-        return stack.isEmpty();
+        return answer;
     }
 }
