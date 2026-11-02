@@ -3,17 +3,13 @@ import java.util.*;
 class Solution {
     public int solution(int[] elements) {
         HashSet<Integer>set = new HashSet<>();
-        int[]copy = new int[elements.length * 2];
+        int n = elements.length;
         
-        for(int i=0; i<elements.length; i++){
-            copy[i] = elements[i];
-            copy[i + elements.length] = elements[i];            
-        }
-        
-        for(int i=0; i<elements.length; i++){
+        for(int i=0; i<n; i++){
             int sum = 0;
-            for(int j=0; j<elements.length; j++){
-                sum = sum + copy[i + j];
+            
+            for(int j=0; j<n; j++){
+                sum = sum + elements[(i+j) % n];
                 set.add(sum);
             }
         }
