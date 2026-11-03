@@ -1,23 +1,28 @@
 class Solution {
     public String solution(String s) {
         StringBuilder sb = new StringBuilder();
-        int index = 0;
+        int idx = 0;
         
         for(int i=0; i<s.length(); i++){
             char c = s.charAt(i);
             
-            if(c == ' '){
-                sb.append(' ');
-                index = 0;
-            }else{
-                if(index == 0){
+            if(Character.isLetter(c)){
+                if(idx == 0){
                     sb.append(Character.toUpperCase(c));
+                    idx++;
                 }else{
                     sb.append(Character.toLowerCase(c));
+                    idx++;
                 }
-                index++;
+            }else if(Character.isDigit(c)){
+                sb.append(c);
+                idx++;
+            }else{
+                sb.append(" ");
+                idx = 0;
             }
         }
+        
         return sb.toString();
     }
 }
