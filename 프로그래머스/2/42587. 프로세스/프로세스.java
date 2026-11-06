@@ -3,28 +3,32 @@ import java.util.*;
 class Solution {
     public int solution(int[] priorities, int location) {
         int answer = 0;
-        PriorityQueue<Integer>pq = new PriorityQueue<>(Collections.reverseOrder());
         Queue<int[]>q = new LinkedList<>();
         
         for(int i=0; i<priorities.length; i++){
-            q.add(new int[]{priorities[i],i});
-            pq.add(priorities[i]);
+            q.add(new int[]{i,priorities[i]});
         }
         
         while(!q.isEmpty()){
             int[]cur = q.poll();
+            boolean high = false;
             
-            if(cur[0] == pq.peek()){
-                pq.poll();
+            for(int[]p : q){
+                if(cur[1] < p[1]){
+                    high = true;
+                    break;
+                }
+            }
+            
+            if(high){
+                q.add(cur);
+            }else{
                 answer++;
                 
-                if(cur[1] == location){
-                    return answer;
-                }
-            }else{
-                q.add(cur);
+                if(cur[0] == location) return answer;
             }
         }
+        
         return answer;
     }
 }
