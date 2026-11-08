@@ -3,13 +3,14 @@ import java.util.*;
 class Solution {
     public int[] solution(int[] numbers) {
         int[] answer = new int[numbers.length];
+        Arrays.fill(answer, -1);
         Stack<Integer>st = new Stack<>();
+        st.push(0);
         
-        Arrays.fill(answer,-1);
-        
-        for(int i=0; i<numbers.length; i++){
+        for(int i=1; i<numbers.length; i++){
             while(!st.isEmpty() && numbers[st.peek()] < numbers[i]){
-                answer[st.pop()] = numbers[i];
+                int idx = st.pop();
+                answer[idx] = numbers[i];
             }
             st.push(i);
         }
