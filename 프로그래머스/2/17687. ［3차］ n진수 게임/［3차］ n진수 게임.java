@@ -1,19 +1,18 @@
 class Solution {
     public String solution(int n, int t, int m, int p) {
-        StringBuilder allNumbers = new StringBuilder();
+        StringBuilder sb = new StringBuilder();
         StringBuilder answer = new StringBuilder();
+        int num = 0;
         
-        int currentNum = 0;
-        
-        while (allNumbers.length() < t * m) {
-            String converted = Integer.toString(currentNum, n).toUpperCase();
-            allNumbers.append(converted);
-            currentNum++;
+        while(sb.length() < t * m){
+            sb.append(Integer.toString(num,n).toUpperCase());
+            num++;
         }
         
-        for (int i = 0; i < t; i++) {
-            int targetIndex = (p - 1) + (i * m);
-            answer.append(allNumbers.charAt(targetIndex));
+        for(int i=p-1; i<sb.length(); i=i+m){
+            if(answer.length() == t) break;
+            
+            answer.append(sb.charAt(i));
         }
         
         return answer.toString();
