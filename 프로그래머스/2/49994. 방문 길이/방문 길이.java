@@ -1,30 +1,39 @@
-import java.util.*;
-
 class Solution {
+    int[] dx = {-1, 1, 0, 0};
+    int[] dy = {0, 0, 1, -1};
+    
     public int solution(String dirs) {
-        Set<String>visit = new HashSet<>();
+        int dist = 0;
+        int x = 5;
+        int y = 5;
         
-        int x = 0;
-        int y = 0;
+        boolean[][][][]visited = new boolean[11][11][11][11];
         
         for(int i=0; i<dirs.length(); i++){
-            char c = dirs.charAt(i);
+            char next = dirs.charAt(i);
             
-            int prevX = x;
-            int prevY = y;
+            int d = 0;
             
-            if(c == 'U' && y < 5) y++;
-            else if(c == 'D' && y > -5) y--;
-            else if(c == 'R' && x < 5) x++;
-            else if(c == 'L' && x > -5) x--;
-            else continue;
+            if(next == 'U') d = 0;
+            else if(next == 'D') d = 1;
+            else if(next == 'R') d = 2;
+            else d = 3;
             
-            String path1 = prevX + "" + prevY + "" + x + "" + y;
-            String path2 = x + "" + y + "" + prevX + "" + prevY;
+            int nx = x + dx[d];
+            int ny = y + dy[d];
             
-            visit.add(path1);
-            visit.add(path2);
+            if(nx < 0 || nx >= 11 || ny < 0 || ny >= 11) continue;
+            
+            if(!visited[x][y][nx][ny]){
+                visited[x][y][nx][ny] = true;
+                visited[nx][ny][x][y] = true;
+                dist++;
+            }
+            
+            x = nx;
+            y = ny;
         }
-        return visit.size() / 2;
+        
+        return dist;
     }
 }
