@@ -2,26 +2,32 @@ import java.util.*;
 
 class Solution {
     public int solution(int x, int y, int n) {
-        if(x == y) return 0;
+        Queue<int[]>q = new LinkedList<>();
+        boolean[]visited = new boolean[y+1];
         
-        int[]dist = new int[y+1];
-        Queue<Integer>q = new LinkedList<>();
-        q.add(x);
+        q.add(new int[]{x,0});
+        visited[x] = true;
         
         while(!q.isEmpty()){
-            int cur = q.poll();
+            int[]cur = q.poll();
             
-            int[]nextValues = {cur + n,cur * 2, cur * 3};
+            int num = cur[0];
+            int count = cur[1];
             
-            for(int next : nextValues){
-                if(next == y) return dist[cur] + 1;
+            if(num == y) return count;
+            
+            int[]next = {num + n, num * 2, num * 3};
+            
+            for(int i=0; i<next.length; i++){
+                int value = next[i];
                 
-                if(next < y && dist[next] == 0){
-                    dist[next] = dist[cur] + 1;
-                    q.add(next);
+                if(value <= y && !visited[value]){
+                    visited[value] = true;
+                    q.add(new int[]{value, count+1});
                 }
             }
         }
+
         return -1;
     }
 }
