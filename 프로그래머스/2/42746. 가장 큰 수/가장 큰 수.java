@@ -9,12 +9,12 @@ class Solution {
             arr[i] = numbers[i] + "";
         }
         
-        Arrays.sort(arr, (o1,o2)-> (o2+o1).compareTo(o1+o2));
+        Arrays.sort(arr,(a,b)->(b+a).compareTo(a+b));
         
         if(arr[0].equals("0")) return "0";
         
-        for(String s: arr){
-            sb.append(s);
+        for(int i=0; i<arr.length; i++){
+            sb.append(arr[i]);
         }
         
         return sb.toString();
