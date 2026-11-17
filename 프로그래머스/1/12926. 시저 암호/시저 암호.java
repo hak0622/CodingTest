@@ -5,13 +5,13 @@ class Solution {
         for(int i=0; i<s.length(); i++){
             char c = s.charAt(i);
             
-            if(c >= 'a' && c <= 'z'){
-                sb.append((char)((c - 'a' + n) % 26 + 97) + "");
-            }else if(c >= 'A' && c <= 'Z'){
-                sb.append((char)((c - 'A' + n) % 26 + 65) + "");
-            }else{
-                sb.append(" ");
+            if(Character.isLowerCase(c)){
+                c = (char)((c - 'a' + n) % 26 + 'a');
+            }else if(Character.isUpperCase(c)){
+                c = (char)((c - 'A' + n) % 26 + 'A');
             }
+            
+            sb.append(c);
         }
         return sb.toString();
     }
