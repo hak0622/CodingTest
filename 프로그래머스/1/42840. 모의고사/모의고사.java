@@ -2,24 +2,24 @@ import java.util.*;
 
 class Solution {
     public int[] solution(int[] answers) {
+        int[]math1 = {1,2,3,4,5};
+        int[]math2 = {2,1,2,3,2,4,2,5};
+        int[]math3 = {3,3,1,1,2,2,4,4,5,5};
+        
+        int[]count = new int[3];
         List<Integer>list = new ArrayList<>();
-        int[]supo1 = {1,2,3,4,5};
-        int[]supo2 = {2,1,2,3,2,4,2,5};
-        int[]supo3 = {3,3,1,1,2,2,4,4,5,5};
-        int count1 = 0;
-        int count2 = 0;
-        int count3 = 0;
         
         for(int i=0; i<answers.length; i++){
-            if(answers[i] == supo1[i % supo1.length]) count1++;
-            if(answers[i] == supo2[i % supo2.length]) count2++;
-            if(answers[i] == supo3[i % supo3.length]) count3++;
+            if(answers[i] == math1[i % math1.length]) count[0]++;
+            if(answers[i] == math2[i % math2.length]) count[1]++;
+            if(answers[i] == math3[i % math3.length]) count[2]++;
         }
         
-        int max  = Math.max(count1, Math.max(count2,count3));
-        if(max == count1) list.add(1);
-        if(max == count2) list.add(2);
-        if(max == count3) list.add(3);
+        int max = Math.max(count[0], Math.max(count[1],count[2]));
+        
+        for(int i=0; i<count.length; i++){
+            if(count[i] == max) list.add(i+1);
+        }
         
         return list.stream().mapToInt(i->i).toArray();
     }
