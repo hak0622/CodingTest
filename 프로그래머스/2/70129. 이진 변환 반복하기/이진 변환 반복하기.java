@@ -1,25 +1,24 @@
 class Solution {
     public int[] solution(String s) {
-        int sum = 0;
         int count = 0;
+        int zero = 0;
         
-        while(s.length() != 1){            
-            int deleteOne = 0;
+        while(s.length() > 1){
+            StringBuilder sb = new StringBuilder();
             
             for(int i=0; i<s.length(); i++){
                 char c = s.charAt(i);
                 
-                if(c == '0'){
-                    deleteOne++;
-                }
+                if(c == '1') sb.append(c);
+                else zero++;
             }
             
-            sum = sum + deleteOne;
-            count = count + 1;
+            int n = sb.length();
             
-            s = Integer.toString(s.length() - deleteOne , 2);            
+            s = Integer.toString(n,2);
+            
+            count++;
         }
-        
-        return new int[]{count,sum};
+        return new int[]{count,zero};
     }
 }
