@@ -3,7 +3,8 @@ class Solution {
         int answer = arr[0];
         
         for(int i=1; i<arr.length; i++){
-            answer = lcm(answer, arr[i]);
+            int n = gcd(answer,arr[i]);
+            answer = answer / n * arr[i];
         }
         
         return answer;
@@ -11,14 +12,10 @@ class Solution {
     
     public int gcd(int a, int b){
         while(b != 0){
-            int temp = a % b;
+            int tmp = a % b;
             a = b;
-            b = temp;
+            b = tmp;
         }
         return a;
-    }
-    
-    public int lcm(int a, int b){
-        return (a * b) / gcd(a,b);
     }
 }
