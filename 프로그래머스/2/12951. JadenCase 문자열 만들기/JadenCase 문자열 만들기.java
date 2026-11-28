@@ -22,7 +22,6 @@ class Solution {
                 idx = 0;
             }
         }
-        
         return sb.toString();
     }
 }
