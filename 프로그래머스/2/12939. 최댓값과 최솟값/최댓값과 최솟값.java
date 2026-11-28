@@ -2,19 +2,21 @@ import java.util.*;
 
 class Solution {
     public String solution(String s) {
-        StringBuilder sb = new StringBuilder();
-        String[]str = s.split(" ");
-        List<Integer>list = new ArrayList<>();
+        String[]arr1 = s.split(" ");
+        int[]arr2 = new int[arr1.length];
         
-        for(int i=0; i<str.length; i++){
-            list.add(Integer.parseInt(str[i]));
+        for(int i=0; i<arr1.length; i++){
+            arr2[i] = Integer.parseInt(arr1[i]);
         }
         
-        Collections.sort(list);
+        Arrays.sort(arr2);
         
-        sb.append(list.get(0));
+        StringBuilder sb = new StringBuilder();
+        
+        sb.append(arr2[0]);
         sb.append(" ");
-        sb.append(list.get(list.size()-1));
+        sb.append(arr2[arr2.length - 1]);
+        
         return sb.toString();
     }
 }
