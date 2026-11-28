@@ -8,6 +8,6 @@ class Solution {
             set.add(nums[i]);
         }
         
-        return Math.min(set.size(), nums.length / 2);
+        return Math.min(nums.length / 2, set.size());
     }
 }
